@@ -7,7 +7,7 @@ using System.Text;
 using NUnit.Framework;
 using Truesight.Parser.Impl.Ops;
 using Truesight.TextGenerators.Core;
-using XenoGears;
+using XenoGears.Functional;
 using XenoGears.Reflection.Shortcuts;
 using XenoGears.Strings;
 using XenoGears.Assertions;

@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using NUnit.Framework;
-using XenoGears;
 using Truesight.TextGenerators.Parser.KnowledgeBase;
+using XenoGears.Functional;
 
 namespace Truesight.TextGenerators.Parser
 {

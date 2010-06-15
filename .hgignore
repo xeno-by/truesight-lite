@@ -9,3 +9,4 @@ glob:Truesight.Playground/obj/
 glob:Truesight.TextGenerators/bin/
 glob:Truesight.TextGenerators/obj/
 glob:Truesight.TextGenerators/Dependencies/
+glob:*AssemblyInfo.cs

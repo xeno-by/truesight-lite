@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection.Emit;
-using XenoGears;
+using XenoGears.Functional;
 
 namespace Truesight.TextGenerators.Parser.KnowledgeBase
 {

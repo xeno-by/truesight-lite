@@ -11,7 +11,7 @@ using Truesight.Parser.Api.Ops;
 using Truesight.Parser.Impl;
 using Truesight.Parser.Impl.Ops;
 using XenoGears.Assertions;
-using XenoGears;
+using XenoGears.Functional;
 using XenoGears.Strings;
 
 namespace Truesight.TextGenerators.Parser.KnowledgeBase

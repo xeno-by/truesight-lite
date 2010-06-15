@@ -11,7 +11,7 @@ using Truesight.Parser.Impl;
 using Truesight.Parser.Impl.Ops;
 using Truesight.Parser.Impl.Reader;
 using Truesight.TextGenerators.Core;
-using XenoGears;
+using XenoGears.Functional;
 using Truesight.TextGenerators.Parser.KnowledgeBase;
 using NUnit.Framework;
 using XenoGears.Assertions;

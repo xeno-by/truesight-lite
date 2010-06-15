@@ -2,9 +2,14 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Truesight.Decompiler.Pipeline.Attrs;
+using XenoGears.Versioning;
 
 [assembly: AssemblyProduct("Truesight")]
-[assembly: AssemblyTitle("Truesight")]
+[assembly: AssemblyTitle("Truesight (" +
+    "built from $"CODEBASE"$ (rev=$REVISION$, hash=$CODEHASH$), " +
+    "built at $TIMESTAMP$, " +
+    "built by $USERHASH$, " +
+    "built on $MACHINEHASH$)")]
 [assembly: AssemblyCopyright("Copyright © 2009-2010 xeno.by")]
 
 [assembly: ComVisible(false)]
@@ -15,4 +20,8 @@ using Truesight.Decompiler.Pipeline.Attrs;
 [assembly: InternalsVisibleTo("Truesight.Decompiler.Pipeline")]
 
 [assembly: Guid("5f2fcd01-9556-4a8b-ba3a-811699e4b988")]
-[assembly: AssemblyVersion("0.0.0.0")]
+[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyBuiltFrom(Repository = "$"CODEBASE"$", Revision = "$REVISION$", CodebaseHash = "$CODEHASH$")]
+[assembly: AssemblyBuiltAt(Timestamp = "$TIMESTAMP$")]
+[assembly: AssemblyBuiltBy(UserHash = "$USERHASH$")]
+[assembly: AssemblyBuiltOn(MachineHash = "$MACHINEHASH$")]
