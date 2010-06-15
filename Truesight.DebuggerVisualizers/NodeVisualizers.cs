@@ -1,0 +1,133 @@
+using System;
+using System.Diagnostics;
+using System.IO;
+using Truesight.DebuggerVisualizers;
+using Truesight.Decompiler.Hir;
+using Truesight.Decompiler.Hir.Core.ControlFlow;
+using Truesight.Decompiler.Hir.Core.Expressions;
+using Truesight.Decompiler.Hir.Core.Functional;
+using Truesight.Decompiler.Hir.Core.Special;
+using XenoGears.DebuggerVisualizers.Hierarchy;
+using Convert=Truesight.Decompiler.Hir.Core.Expressions.Convert;
+using XenoGears.Assertions;
+
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Block), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Block.BlockDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Block.BlockDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Break), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Break.BreakDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Break.BreakDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Catch), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Catch.CatchDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Catch.CatchDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Clause), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Clause.ClauseDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Clause.ClauseDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Continue), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Continue.ContinueDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Continue.ContinueDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Finally), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Finally.FinallyDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Finally.FinallyDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Goto), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Goto.GotoDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Goto.GotoDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(If), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(If.IfDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(If.IfDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Iter), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Iter.IterDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Iter.IterDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Label), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Label.LabelDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Label.LabelDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Loop), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Loop.LoopDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Loop.LoopDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Return), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Return.ReturnDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Return.ReturnDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Throw), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Throw.ThrowDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Throw.ThrowDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Try), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Try.TryDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Try.TryDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Using), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Using.UsingDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Using.UsingDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Addr), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Addr.AddrDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Addr.AddrDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Assign), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Assign.AssignDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Assign.AssignDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(BinaryOperator), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(BinaryOperator.BinaryOperatorDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(BinaryOperator.BinaryOperatorDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(CollectionInit), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(CollectionInit.CollectionInitDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(CollectionInit.CollectionInitDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Conditional), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Conditional.ConditionalOperatorDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Conditional.ConditionalOperatorDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Const), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Const.ConstDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Const.ConstDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Convert), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Convert.ConvertDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Convert.ConvertDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Deref), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Deref.DerefDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Deref.DerefDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Fld), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Fld.FldDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Fld.FldDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Loophole), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Loophole.LoopholeDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Loophole.LoopholeDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(ObjectInit), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(ObjectInit.ObjectInitDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(ObjectInit.ObjectInitDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Prop), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Prop.PropDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Prop.PropDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Ref), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Ref.RefDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Ref.RefDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(SizeOf), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(SizeOf.SizeofDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(SizeOf.SizeofDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(TypeIs), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(TypeIs.TypeIsDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(TypeIs.TypeIsDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(TypeAs), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(TypeAs.TypeAsDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(TypeAs.TypeAsDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(UnaryOperator), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(UnaryOperator.UnaryOperatorDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(UnaryOperator.UnaryOperatorDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Apply), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Apply.ApplyDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Apply.ApplyDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Eval), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Eval.EvalDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Eval.EvalDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Lambda), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Lambda.LambdaDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Lambda.LambdaDebugView_NoParent), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(HierarchySource), Target = typeof(Null), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Null.NullDebugView), Description = "HIR Visualizer")]
+[assembly: DebuggerVisualizer(typeof(HierarchyVisualizer), typeof(NodeDebugViewSource), Target = typeof(Null.NullDebugView_NoParent), Description = "HIR Visualizer")]
+
+namespace Truesight.DebuggerVisualizers
+{
+    public class NodeDebugViewSource : HierarchySource
+    {
+        public override void GetData(Object target, Stream outgoingData)
+        {
+            var debugView = target.AssertCast<Node.INodeDebugView>();
+            base.GetData(debugView.Node.AssertNotNull(), outgoingData);
+        }
+    }
+}

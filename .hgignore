@@ -1,0 +1,11 @@
+glob:*.user
+glob:*.suo
+glob:Truesight/bin/
+glob:Truesight/obj/
+glob:Truesight.DebuggerVisualizers/bin/
+glob:Truesight.DebuggerVisualizers/obj/
+glob:Truesight.Playground/bin/
+glob:Truesight.Playground/obj/
+glob:Truesight.TextGenerators/bin/
+glob:Truesight.TextGenerators/obj/
+glob:Truesight.TextGenerators/Dependencies/

@@ -1,0 +1,18 @@
+﻿Snippets.SomeControlFlow2 :: int a -> int b -> int c -> void
+{
+    for (var x = 0; x < 10; ++x)
+    {
+        if (x > b)
+        {
+            Console.WriteLine("for-for-continue");
+            continue;
+        }
+        x += 2;
+        if (x < b)
+        {
+            Console.WriteLine("for-for-break");
+            break;
+        }
+        x -= 2;
+    }
+}

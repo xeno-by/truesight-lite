@@ -1,0 +1,24 @@
+﻿Snippets.SomeControlFlow :: int a -> int b -> int c -> void
+{
+    for (var i = 0; i < --a; ++i)
+    {
+        while (++b >= --c)
+        {
+            ++i;
+        }
+        if (--a < i++)
+        {
+            break;
+        }
+        do
+        {
+            var CS$4$0000 = true;
+        }
+        while (a++ <= 10)
+        do
+        {
+            c += --a;
+        }
+        while (++b > c++)
+    }
+}

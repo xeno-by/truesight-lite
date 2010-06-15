@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AD6AD620-A775-4D95-9FB4-60D0B48D2DA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Truesight.TextGenerators</RootNamespace>
+    <AssemblyName>Truesight.TextGenerators</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Truesight, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Truesight.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\Helpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Parser\Generator.Classes.cs" />
+    <Compile Include="Parser\Generator.ILOpFactory.cs" />
+    <Compile Include="Parser\Generator.OpCodeReader.cs" />
+    <Compile Include="Parser\Generator.OpCodeReference.cs" />
+    <Compile Include="Parser\KnowledgeBase\FieldSpec.cs" />
+    <Compile Include="Parser\KnowledgeBase\ILOpsKb.cs" />
+    <Compile Include="Parser\KnowledgeBase\OpCodeFamilyKb.cs" />
+    <Compile Include="Parser\KnowledgeBase\OpCodeKb.cs" />
+    <Compile Include="Parser\KnowledgeBase\OperatorType.cs" />
+    <Compile Include="Parser\KnowledgeBase\PredicateType.cs" />
+    <Compile Include="Parser\KnowledgeBase\PrefixSpec.cs" />
+    <Compile Include="Parser\KnowledgeBase\PropertySpec.cs" />
+    <Compile Include="Parser\KnowledgeBase\SlotSpec.cs" />
+    <Compile Include="Parser\OpCodeUtils.cs" />
+    <Compile Include="Parser\Visualizer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XenoGears\XenoGears\XenoGears.csproj">
+      <Project>{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}</Project>
+      <Name>XenoGears</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\TextGeneratedIntoClass.template" />
+    <EmbeddedResource Include="Core\TextGeneratedIntoNamespace.template" />
+    <EmbeddedResource Include="Parser\Generator.ILOpFactory.template" />
+    <EmbeddedResource Include="Parser\Generator.OpCodeReader.template" />
+    <EmbeddedResource Include="Parser\Generator.OpCodeReference.template" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

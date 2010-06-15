@@ -1,0 +1,7 @@
+﻿Snippets.ClassByRef :: RDateTime& x -> void
+{
+    x = RDateTime.Now;
+    var foo = x.Ticks - RDateTime.Now.Ticks;
+    var bar = x.IsDaylightSavingTime();
+    Snippets.ClassByRefAux(x);
+}

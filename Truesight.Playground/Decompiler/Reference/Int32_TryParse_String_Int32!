@@ -1,0 +1,3 @@
+﻿{
+    return Number.TryParseInt32(s, NumberStyles.Integer, NumberFormatInfo.CurrentInfo, out result);
+}

@@ -1,0 +1,8 @@
+﻿Snippets.PreAndPost_VerySimple :: B a -> B b -> int
+{
+    if (++a.f > b.f++)
+    {
+        return 0;
+    }
+    return 1;
+}

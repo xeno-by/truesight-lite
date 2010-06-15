@@ -1,0 +1,15 @@
+﻿Snippets.ByRefCall :: R1 r -> int a_int -> void
+{
+    var l_int = 0;
+    Snippets.ByRefUse(ref a_int);
+    Snippets.ByRefUse(ref l_int);
+    Snippets.ByRefUse(ref r.int);
+    Snippets.ByRefUse(ref r.ints1d[0]);
+    Snippets.ByRefUse(ref r.ints2d[0, 0]);
+    Snippets.ByRefUse(ref r.r.int);
+    Snippets.ByRefUse(ref r.r.ints1d[0]);
+    Snippets.ByRefUse(ref r.r.ints2d[0, 0]);
+    Snippets.ByRefUse(ref r.v);
+    Snippets.ByRefUse(ref r);
+    Snippets.ByRefUse(ref r.r);
+}

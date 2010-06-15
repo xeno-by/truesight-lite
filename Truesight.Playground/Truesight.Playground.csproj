@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Truesight.Playground</RootNamespace>
+    <AssemblyName>Truesight.Playground</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>649</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\nunit\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit-console-runner, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\nunit\lib\nunit-console-runner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\nunit\lib\nunit.util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MetaTests.cs" />
+    <Compile Include="Decompiler\Snippets.cs" />
+    <Compile Include="Decompiler\Tests.Boilerplate.cs" />
+    <Compile Include="Decompiler\Tests.InProduction.cs" />
+    <Compile Include="Decompiler\Tests.UnderDevelopment.cs" />
+    <Compile Include="Decompiler\Tests.XtrasToBeImplemented.cs" />
+    <Compile Include="Parser\DotNetFrameworkTests.cs" />
+    <Compile Include="Parser\ILRewriter\IILRewriteControl.cs" />
+    <Compile Include="Parser\ILRewriter\IILRewriterContext.cs" />
+    <Compile Include="Parser\ILRewriter\ILRewriter.cs" />
+    <Compile Include="Parser\ILRewriter\ILTrait.Rewrite.cs" />
+    <Compile Include="Parser\ILRewriter\OffsetsMode.cs" />
+    <Compile Include="Parser\Snippets.cs" />
+    <Compile Include="Parser\Tests.InProduction.cs" />
+    <Compile Include="Parser\Tests.Boilerplate.cs" />
+    <Compile Include="Parser\Tests.XtrasToBeImplemented.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRunner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XenoGears\XenoGears\XenoGears.csproj">
+      <Project>{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}</Project>
+      <Name>XenoGears</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Truesight\Truesight.csproj">
+      <Project>{38B04F0C-91C8-4472-A370-5233C133461B}</Project>
+      <Name>Truesight</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Decompiler\Reference\ByRefCall" />
+    <EmbeddedResource Include="Decompiler\Reference\ByRefUse_Int32!" />
+    <EmbeddedResource Include="Decompiler\Reference\ByRefUse_R1!" />
+    <EmbeddedResource Include="Decompiler\Reference\ByRefUse_V1!" />
+    <EmbeddedResource Include="Decompiler\Reference\ClassByRef" />
+    <EmbeddedResource Include="Decompiler\Reference\Coalesce" />
+    <EmbeddedResource Include="Decompiler\Reference\CoalesceAndConditional" />
+    <EmbeddedResource Include="Decompiler\Reference\ComplexConditions1" />
+    <EmbeddedResource Include="Decompiler\Reference\ComplexConditions2" />
+    <EmbeddedResource Include="Decompiler\Reference\ComplexConditions3" />
+    <EmbeddedResource Include="Decompiler\Reference\ComplexControlFlow" />
+    <EmbeddedResource Include="Decompiler\Reference\ComplexThrow" />
+    <EmbeddedResource Include="Decompiler\Reference\ExoticOperators1" />
+    <EmbeddedResource Include="Decompiler\Reference\ExoticOperators2" />
+    <EmbeddedResource Include="Decompiler\Reference\ExoticOperators3" />
+    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_.ctor_TextWriter" />
+    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_.ctor_TextWriter_String" />
+    <EmbeddedResource Include="Decompiler\Reference\Int32_TryParse_String_Int32!" />
+    <EmbeddedResource Include="Decompiler\Reference\IrregularControlFlow" />
+    <EmbeddedResource Include="Decompiler\Reference\Iter" />
+    <EmbeddedResource Include="Decompiler\Reference\Lambdas_ImmutableClosures" />
+    <EmbeddedResource Include="Decompiler\Reference\Lambdas_MutableClosures" />
+    <EmbeddedResource Include="Decompiler\Reference\ObjectInitsAndCollectionInits" />
+    <EmbeddedResource Include="Decompiler\Reference\OmitUnnecessaryCasts" />
+    <EmbeddedResource Include="Decompiler\Reference\Operators1" />
+    <EmbeddedResource Include="Decompiler\Reference\Operators2" />
+    <EmbeddedResource Include="Decompiler\Reference\Pointers" />
+    <EmbeddedResource Include="Decompiler\Reference\Pointers2" />
+    <EmbeddedResource Include="Decompiler\Reference\PointersAndFixed" />
+    <EmbeddedResource Include="Decompiler\Reference\PreAndPost_MoreOrLessSimple" />
+    <EmbeddedResource Include="Decompiler\Reference\PreAndPost_VerySimple" />
+    <EmbeddedResource Include="Decompiler\Reference\PreAndPost_WithFields" />
+    <EmbeddedResource Include="Decompiler\Reference\PreAndPost_WithPropsAndIndexers" />
+    <EmbeddedResource Include="Decompiler\Reference\SimpleThrow" />
+    <EmbeddedResource Include="Decompiler\Reference\SizeOf" />
+    <EmbeddedResource Include="Decompiler\Reference\SomeControlFlow" />
+    <EmbeddedResource Include="Decompiler\Reference\SomeControlFlow2" />
+    <EmbeddedResource Include="Decompiler\Reference\StackAllocFib" />
+    <EmbeddedResource Include="Decompiler\Reference\Stfld_.ctor_MethodBody_BinaryReader_ReadOnlyCollection[ILOp]" />
+    <EmbeddedResource Include="Decompiler\Reference\StructByRef" />
+    <EmbeddedResource Include="Decompiler\Reference\TypeAs" />
+    <EmbeddedResource Include="Decompiler\Reference\TypeIs" />
+    <EmbeddedResource Include="Decompiler\Reference\TypeOf" />
+    <EmbeddedResource Include="Decompiler\Reference\Using" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSmallSnippet_NormalCase" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSmallSnippetWithoutSwitch_MethodBuilder_InProgress" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSmallSnippetWithoutSwitch_MethodBuilder_Baked" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSmallSnippet_AsByteSequence_WithModule" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSmallSnippet_AsByteSequence_WithoutModule" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Parser\Reference\ParseSnippetWithGuards" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Parser\Tests.UnderDevelopment.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

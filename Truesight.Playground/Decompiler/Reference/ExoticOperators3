@@ -1,0 +1,8 @@
+﻿Snippets.ExoticOperators3 :: float a -> float? b -> Cell v -> void
+{
+    a %= (float)(int)v.Tau;
+    v.Ux += (a /= v.Ux);
+    v.Tau = (float)((int)a-- ^ (int)v.Uz);
+    v.Uz -= a;
+    v.Ux += (v.Ux /= a);
+}

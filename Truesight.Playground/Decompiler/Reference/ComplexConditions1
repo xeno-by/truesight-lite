@@ -1,0 +1,11 @@
+﻿Snippets.ComplexConditions1 :: bool a -> bool b -> void
+{
+    var pap = a && b;
+    var pan = a && !b;
+    var nap = !a && b;
+    var nan = !a && !b;
+    var pop = a || b;
+    var pon = a || !b;
+    var nop = !a || b;
+    var non = !a || !b;
+}

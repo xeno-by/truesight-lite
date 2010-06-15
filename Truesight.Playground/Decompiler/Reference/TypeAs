@@ -1,0 +1,9 @@
+﻿Snippets.TypeAs :: Object o -> String sub -> int
+{
+    var str = o as String;
+    if (str != null)
+    {
+        return str.IndexOf(sub);
+    }
+    return -1;
+}

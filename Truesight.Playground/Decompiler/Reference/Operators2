@@ -1,0 +1,4 @@
+﻿Snippets.Operators2 :: int a -> sbyte b -> short c -> ulong
+{
+    return (long)((a - c) + b * b) / (ulong)a;
+}

@@ -1,0 +1,4 @@
+﻿Snippets.OmitUnnecessaryCasts :: uint a -> byte b -> short c -> bool
+{
+    return ((a | b) == (a & c)) && (a == b + c);
+}

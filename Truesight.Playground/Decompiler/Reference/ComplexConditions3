@@ -1,0 +1,8 @@
+﻿Snippets.ComplexConditions3 :: int a -> int b -> int c -> int
+{
+    if ((((a != b) || (a != c) || (b != c)) && ((b * c != 0) || (a != b)) && (a - b != b - c) && (a + b != b - c) && (a != c)) || (a * b * c <= 0))
+    {
+        return 42;
+    }
+    return a / b;
+}

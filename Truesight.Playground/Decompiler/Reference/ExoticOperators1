@@ -1,0 +1,4 @@
+﻿Snippets.ExoticOperators1 :: float a -> Cell v -> void
+{
+    v.Ux += a;
+}

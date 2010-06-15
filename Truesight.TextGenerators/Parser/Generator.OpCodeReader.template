@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection.Emit;
+using XenoGears.Assertions;
+
+namespace Truesight.Parser.Impl.Reader
+{
+    internal static partial class OpCodeReader
+    {
+        private static Object _staticCtorLock = new Object();
+        private static bool _staticCtorAintRun = true;
+
+        private static HashSet<Byte> _oneByteOpCodePrefixes = new HashSet<Byte>();
+        private static Dictionary<Byte, OpCode> _firstByteToOpCode = new Dictionary<Byte, OpCode>();
+        private static HashSet<Byte> _twoByteOpCodePrefixes = new HashSet<Byte>();
+        private static Dictionary<Byte, OpCode> _secondByteToOpCode = new Dictionary<Byte, OpCode>();
+
+        static OpCodeReader()
+        {
+            if (_staticCtorAintRun)
+            {
+                lock (_staticCtorLock)
+                {
+                    if (_staticCtorAintRun)
+                    {
+                        try
+                        {
+                            %FILL_MAPS%
+                        }
+                        finally
+                        {
+                            _staticCtorAintRun = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

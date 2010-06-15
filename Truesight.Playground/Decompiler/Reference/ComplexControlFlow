@@ -1,0 +1,127 @@
+﻿Snippets.ComplexControlFlow :: int a -> int b -> int c -> int
+{
+    for (var i = 0; (i < a * b) || (b < a);)
+    {
+        if (a * b * c > 0)
+        {
+            Console.WriteLine("for-if");
+            var k = 0;
+            do
+            {
+                ++k;
+                if (k == a++ + c)
+                {
+                    return a / b;
+                }
+                if (k-- > a + c)
+                {
+                    continue;
+                }
+                Console.WriteLine("for-if-dowhile");
+            }
+            while (k < b + c)
+            if (k + i == c)
+            {
+                break;
+            }
+        }
+        while (i - c > b / a)
+        {
+            Console.WriteLine("for-while");
+            i += a;
+        }
+        for (var z = 0; true; z += 10)
+        {
+            if (z > 101)
+            {
+                break;
+            }
+        }
+        if (i > a * b * c)
+        {
+            while (a < 2 / c)
+            {
+                ++i;
+                if (a == i)
+                {
+                    break;
+                }
+            }
+        }
+        for (var x = 0; x < 10; ++x)
+        {
+            if (x > b)
+            {
+                Console.WriteLine("for-for-continue");
+                continue;
+            }
+            x += 2;
+            if (x < b)
+            {
+                Console.WriteLine("for-for-break");
+                break;
+            }
+            x -= 2;
+        }
+        if (i + b * c == a - b)
+        {
+            i += a;
+            if (i > b)
+            {
+                Console.WriteLine("for-if-iftrue-continue");
+                continue;
+            }
+            Console.WriteLine("for-if-iffalse-nocontinue");
+            i -= a;
+        }
+        if (a == b)
+        {
+            if (i > b)
+            {
+                Console.WriteLine("for-if-iftrue-return");
+                return 10;
+            }
+            Console.WriteLine("for-if-iffalse-break");
+            break;
+        }
+        for (var j = i; (j < b++ * ++c) && (--i < a--); ++j)
+        {
+            Console.WriteLine("for-for");
+            if (i + j == a - c)
+            {
+                continue;
+            }
+            if (i * j == c)
+            {
+                return 1 + j * a;
+            }
+            do
+            {
+                ++j;
+                Console.WriteLine("for-for-dowhile");
+            }
+            while (j < a / c)
+            if (i / j != a + b)
+            {
+                i += j;
+                Console.WriteLine("for-for-iffalse-endofbody");
+            }
+            else
+            {
+                Console.WriteLine("for-for-iftrue-endofbody");
+            }
+        }
+    }
+    var m = 5;
+    while (true)
+    {
+        Console.WriteLine("while-true");
+        if (m <= 2)
+        {
+            break;
+        }
+        --m;
+    }
+    var d = a + b + c * c;
+    return 2 * m + d;
+}

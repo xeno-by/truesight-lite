@@ -1,0 +1,4 @@
+﻿Snippets.Operators1 :: int a -> byte b -> short c -> int
+{
+    return ((a - c) + b * b) / a;
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Truesight.Playground", "Truesight.Playground\Truesight.Playground.csproj", "{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Truesight", "Truesight\Truesight.csproj", "{38B04F0C-91C8-4472-A370-5233C133461B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears", "..\XenoGears\XenoGears\XenoGears.csproj", "{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DAE7E4-8D19-4B96-9BA0-4430EA25787A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B04F0C-91C8-4472-A370-5233C133461B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B04F0C-91C8-4472-A370-5233C133461B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B04F0C-91C8-4472-A370-5233C133461B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B04F0C-91C8-4472-A370-5233C133461B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

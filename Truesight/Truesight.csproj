@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38B04F0C-91C8-4472-A370-5233C133461B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Truesight</RootNamespace>
+    <AssemblyName>Truesight</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ISymWrapper" />
+    <Reference Include="QuickGraph, Version=3.3.40824.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\quickgraph\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz, Version=3.3.40824.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdPartyStuff\quickgraph\QuickGraph.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decompiler\DecompilerApi.cs" />
+    <Compile Include="Decompiler\Domains\Domain.Core.cs" />
+    <Compile Include="Decompiler\Domains\Domain.Current.cs" />
+    <Compile Include="Decompiler\Domains\Language.cs" />
+    <Compile Include="Decompiler\Domains\Semantics.cs" />
+    <Compile Include="Decompiler\Framework\Annotations\PipelineAttribute.cs" />
+    <Compile Include="Decompiler\Framework\Annotations\PipelineElementAttribute.cs" />
+    <Compile Include="Decompiler\Framework\Annotations\PipelinePlantAttribute.cs" />
+    <Compile Include="Decompiler\Framework\Annotations\PipelineStepAttribute.cs" />
+    <Compile Include="Decompiler\Framework\Annotations\PipelineWorkshopAttribute.cs" />
+    <Compile Include="Decompiler\Framework\Core\IPipeline.cs" />
+    <Compile Include="Decompiler\Framework\Core\IPipelineStep.cs" />
+    <Compile Include="Decompiler\Framework\Impl\Codegen.cs" />
+    <Compile Include="Decompiler\Framework\Impl\Pipeline.cs" />
+    <Compile Include="Decompiler\Framework\Impl\PipelineStep.cs" />
+    <Compile Include="Decompiler\Framework\Impl\Registry.cs" />
+    <Compile Include="Decompiler\Framework\Impl\Slot.cs" />
+    <Compile Include="Decompiler\Framework\Impl\SlotHelpers.cs" />
+    <Compile Include="Decompiler\Framework\PipelineFramework.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Block.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Break.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Catch.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Clause.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Continue.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Finally.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Goto.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\If.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Iter.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Label.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Loop.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Return.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Throw.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Try.cs" />
+    <Compile Include="Decompiler\Hir\Core\ControlFlow\Using.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Addr.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Assign.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\BinaryOperator.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\CollectionInit.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Conditional.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Const.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Convert.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Deref.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Expression.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Fld.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Loophole.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\ObjectInit.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Operator.Core.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Operator.Ctors.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\OperatorExtensions.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\OperatorType.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\OperatorTypeExtensions.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Prop.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Ref.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Sizeof.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Slot.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\TypeAs.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\TypeIs.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\UnaryOperator.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\Apply.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\Eval.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\InvocationStyle.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\Lambda.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\ParamInfo.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\Sig.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Block.Scope.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Iter.Scope.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Loop.Scope.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Scope.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\ScopeExtensions.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\ScopeHelpers.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Using.Scope.cs" />
+    <Compile Include="Decompiler\Hir\Core\Special\Null.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\Local.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\Param.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\Sym.Core.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\Sym.Ctors.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\SymExtensions.cs" />
+    <Compile Include="Decompiler\Hir\Core\Symbols\SymHelpers.cs" />
+    <Compile Include="Decompiler\Hir\Node.ChangeTracking.cs" />
+    <Compile Include="Decompiler\Hir\Node.Cloning.cs" />
+    <Compile Include="Decompiler\Hir\Node.Core.cs" />
+    <Compile Include="Decompiler\Hir\Node.Debuggability.cs" />
+    <Compile Include="Decompiler\Hir\Node.DebuggabilityHelper.cs" />
+    <Compile Include="Decompiler\Hir\Node.Domain.cs" />
+    <Compile Include="Decompiler\Hir\Node.Equivalence.cs" />
+    <Compile Include="Decompiler\Hir\Node.Hierarchy.cs" />
+    <Compile Include="Decompiler\Hir\Node.InPlace.cs" />
+    <Compile Include="Decompiler\Hir\Node.Traversal.cs" />
+    <Compile Include="Decompiler\Hir\NodeType.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpParenthesesHelper.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Core.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Functional.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Multiliners.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Oneliners.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprintWriter.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\IndentedTextWriter.cs" />
+    <Compile Include="Decompiler\Hir\Prettyprint\IndentedTextWriterFactory.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Exceptions\ExceptionThrower.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Exceptions\HirTraversalException.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Exceptions\UnexpectedNodeException.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Exceptions\UnsupportedNodeException.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Reducers\AbstractHirReducer.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Reducers\HirReducer.Api.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Reducers\HirReducer.Helpers.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Reducers\LateBoundHirReducer.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\SimpleTraversals.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Transformers\AbstractHirTransformer.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Transformers\HirTransformer.Api.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Transformers\HirTransformer.Helpers.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Transformers\LateBoundHirTransformer.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Traversers\AbstractHirTraverser.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Traversers\HirTraverser.Api.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Traversers\HirTraverser.Helpers.cs" />
+    <Compile Include="Decompiler\Hir\Traversal\Traversers\LateBoundHirTraverser.cs" />
+    <Compile Include="Decompiler\Hir\TypeInference\TypeInferenceApi.cs" />
+    <Compile Include="Decompiler\Hir\TypeInference\TypeInferenceCache.cs" />
+    <Compile Include="Decompiler\Hir\TypeInference\TypeInferenceTraverser.cs" />
+    <Compile Include="Decompiler\Pipeline\Api.cs" />
+    <Compile Include="Decompiler\Pipeline\Attrs\DecompilationStepAttribute.cs" />
+    <Compile Include="Decompiler\Pipeline\Attrs\DecompilerAttribute.cs" />
+    <Compile Include="Decompiler\Pipeline\Attrs\DecompilerCodebaseAttribute.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\BuildControlFlowGraph.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\Common\DeleteHelper.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\Common\ReplaceHelper.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\CreateCarcass.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\CSharpEvaluationOrder.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\DecodeAndLoadCIL.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\InitialDecompilation.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\OpAssign\AtomHelper.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\OpAssign\DfaHelper.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\OpAssign\OperatorHelper.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\RestoreCoalesceOperators.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\RestoreCollectionInitializers.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\RestoreConditionalOperators.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\RestoreObjectInitializers.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\RestoreOpAssignOperators.cs" />
+    <Compile Include="Decompiler\Pipeline\Context.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\BaseControlFlowGraph.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\BaseNamedEntity.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\ControlFlowBlock.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\ControlFlowEdge.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\ControlFlowGraph.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\ControlFlowGraphExtensions.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\PredicateType.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\PredicateTypeExtensions.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Cfg\ViewOfControlFlowGraph.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\DecompileComplexConditions.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\DecompileScopes.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\EvictUnreachableCode.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\NormalizeEdgeTags.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\RemoveReturnThunk.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\BlockScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\ComplexScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\IfScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\IScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\LambdaScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\LoopScope.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\Offspring.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\ScopeApi.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\Scopes\ScopeHelpers.cs" />
+    <Compile Include="Decompiler\Pipeline\Flow\SplitBlocksIntoAssignmentsAndPredicates.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\InferLoopIters.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\RestoreBooleans.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\RestoreEnums.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\RestoreIters.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\RestoreTypeIs.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\RestoreUsings.cs" />
+    <Compile Include="Decompiler\Pipeline\Hir\SimplifyConditions1.cs" />
+    <Compile Include="Decompiler\Pipeline\Pipeline.cs" />
+    <Compile Include="Decompiler\Pipeline\Stages.cs" />
+    <Compile Include="Decompiler\Pipeline\Symbols.cs" />
+    <Compile Include="Parser\Api\DebugInfo\IMethodDebugInfo.cs" />
+    <Compile Include="Parser\Api\DebugInfo\ISequencePoint.cs" />
+    <Compile Include="Parser\Api\DebugInfo\ITextRun.cs" />
+    <Compile Include="Parser\Api\Emit\ILTrait.cs" />
+    <Compile Include="Parser\Api\ICatch.cs" />
+    <Compile Include="Parser\Api\IFinally.cs" />
+    <Compile Include="Parser\Api\IGuard.cs" />
+    <Compile Include="Parser\Api\IHandler.cs" />
+    <Compile Include="Parser\Api\IILOp.cs" />
+    <Compile Include="Parser\Api\IILOpSpec.cs" />
+    <Compile Include="Parser\Api\IILOpType.cs" />
+    <Compile Include="Parser\Api\ILocalVar.cs" />
+    <Compile Include="Parser\Api\IMethodBody.cs" />
+    <Compile Include="Parser\Api\IPatch.cs" />
+    <Compile Include="Parser\Api\Ops\Arglist.cs" />
+    <Compile Include="Parser\Api\Ops\Branch.cs" />
+    <Compile Include="Parser\Api\Ops\Break.cs" />
+    <Compile Include="Parser\Api\Ops\Call.cs" />
+    <Compile Include="Parser\Api\Ops\Cast.cs" />
+    <Compile Include="Parser\Api\Ops\Ckfinite.cs" />
+    <Compile Include="Parser\Api\Ops\Constrained.cs" />
+    <Compile Include="Parser\Api\Ops\Cpblk.cs" />
+    <Compile Include="Parser\Api\Ops\Cpobj.cs" />
+    <Compile Include="Parser\Api\Ops\Dup.cs" />
+    <Compile Include="Parser\Api\Ops\Endfilter.cs" />
+    <Compile Include="Parser\Api\Ops\Endfinally.cs" />
+    <Compile Include="Parser\Api\Ops\Initblk.cs" />
+    <Compile Include="Parser\Api\Ops\Isinst.cs" />
+    <Compile Include="Parser\Api\Ops\Jmp.cs" />
+    <Compile Include="Parser\Api\Ops\Ldarg.cs" />
+    <Compile Include="Parser\Api\Ops\Ldarga.cs" />
+    <Compile Include="Parser\Api\Ops\Ldc.cs" />
+    <Compile Include="Parser\Api\Ops\Ldelem.cs" />
+    <Compile Include="Parser\Api\Ops\Ldelema.cs" />
+    <Compile Include="Parser\Api\Ops\Ldfld.cs" />
+    <Compile Include="Parser\Api\Ops\Ldflda.cs" />
+    <Compile Include="Parser\Api\Ops\Ldftn.cs" />
+    <Compile Include="Parser\Api\Ops\Ldind.cs" />
+    <Compile Include="Parser\Api\Ops\Ldlen.cs" />
+    <Compile Include="Parser\Api\Ops\Ldloc.cs" />
+    <Compile Include="Parser\Api\Ops\Ldloca.cs" />
+    <Compile Include="Parser\Api\Ops\Localloc.cs" />
+    <Compile Include="Parser\Api\Ops\Mkrefany.cs" />
+    <Compile Include="Parser\Api\Ops\New.cs" />
+    <Compile Include="Parser\Api\Ops\Nop.cs" />
+    <Compile Include="Parser\Api\Ops\Operator.cs" />
+    <Compile Include="Parser\Api\Ops\OperatorType.cs" />
+    <Compile Include="Parser\Api\Ops\OperatorTypeHelper.cs" />
+    <Compile Include="Parser\Api\Ops\Pop.cs" />
+    <Compile Include="Parser\Api\Ops\PredicateType.cs" />
+    <Compile Include="Parser\Api\Ops\PredicateTypeHelper.cs" />
+    <Compile Include="Parser\Api\Ops\Readonly.cs" />
+    <Compile Include="Parser\Api\Ops\Refanytype.cs" />
+    <Compile Include="Parser\Api\Ops\Refanyval.cs" />
+    <Compile Include="Parser\Api\Ops\Ret.cs" />
+    <Compile Include="Parser\Api\Ops\Rethrow.cs" />
+    <Compile Include="Parser\Api\Ops\RuntimeHandle.cs" />
+    <Compile Include="Parser\Api\Ops\Sizeof.cs" />
+    <Compile Include="Parser\Api\Ops\Starg.cs" />
+    <Compile Include="Parser\Api\Ops\Stelem.cs" />
+    <Compile Include="Parser\Api\Ops\Stfld.cs" />
+    <Compile Include="Parser\Api\Ops\Stind.cs" />
+    <Compile Include="Parser\Api\Ops\Stloc.cs" />
+    <Compile Include="Parser\Api\Ops\Switch.cs" />
+    <Compile Include="Parser\Api\Ops\Tail.cs" />
+    <Compile Include="Parser\Api\Ops\Throw.cs" />
+    <Compile Include="Parser\Api\Ops\Unaligned.cs" />
+    <Compile Include="Parser\Api\Ops\Volatile.cs" />
+    <Compile Include="Parser\Impl\Catch.cs" />
+    <Compile Include="Parser\Impl\DebugInfo\MethodDebugInfo.cs" />
+    <Compile Include="Parser\Impl\DebugInfo\SequencePoint.cs" />
+    <Compile Include="Parser\Impl\DebugInfo\TextRun.cs" />
+    <Compile Include="Parser\Impl\Finally.cs" />
+    <Compile Include="Parser\Impl\Guard.cs" />
+    <Compile Include="Parser\Impl\Handler.cs" />
+    <Compile Include="Parser\Impl\ILOp.cs" />
+    <Compile Include="Parser\Impl\ILOpSpec.cs" />
+    <Compile Include="Parser\Impl\LocalVar.cs" />
+    <Compile Include="Parser\Impl\MethodBody.cs" />
+    <Compile Include="Parser\Impl\Ops\OpCodeReference.cs" />
+    <Compile Include="Parser\Impl\Ops\OpCodesAttribute.cs" />
+    <Compile Include="Parser\Impl\Patch.cs" />
+    <Compile Include="Parser\Impl\PdbReader\IMetaDataDispenserPrivate.cs" />
+    <Compile Include="Parser\Impl\PdbReader\IMetadataImportPrivateComVisible.cs" />
+    <Compile Include="Parser\Impl\PdbReader\LowLevelApi.cs" />
+    <Compile Include="Parser\Impl\PdbReader\NativeMethods.cs" />
+    <Compile Include="Parser\Impl\Reader\ILOpFactory.cs" />
+    <Compile Include="Parser\Impl\Reader\ILOpStream.cs" />
+    <Compile Include="Parser\Impl\Reader\ILOpStreamEnumerator.cs" />
+    <Compile Include="Parser\Impl\Reader\OpCodeReader.Core.cs" />
+    <Compile Include="Parser\Impl\Reader\OpCodeReader.Reference.cs" />
+    <Compile Include="Parser\ParserApi.cs" />
+    <Compile Include="Parser\ParserContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XenoGears\XenoGears\XenoGears.csproj">
+      <Project>{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}</Project>
+      <Name>XenoGears</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>if "$(SolutionFileName)"=="Truesight.Full.sln" (
+    if not exist "$(SolutionDir)Truesight.TextGenerators" exit 1
+    if not exist "$(SolutionDir)Truesight.TextGenerators\Dependencies\" mkdir  "$(SolutionDir)Truesight.TextGenerators\Dependencies\"
+    copy *.* "$(SolutionDir)Truesight.TextGenerators\Dependencies\"
+)</PostBuildEvent>
+  </PropertyGroup>
+</Project>

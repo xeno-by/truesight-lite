@@ -1,0 +1,8 @@
+﻿Snippets.PreAndPost_MoreOrLessSimple :: int a -> int b -> int
+{
+    if (++a * (b += 2) > --b * a++)
+    {
+        return 0;
+    }
+    return a - b;
+}

@@ -1,0 +1,35 @@
+﻿Snippets.ComplexConditions2 :: bool a -> bool b -> bool c -> void
+{
+    var papap = a && b && c;
+    var papan = a && b && !c;
+    var panap = a && !b && c;
+    var panan = a && !b && !c;
+    var napap = !a && b && c;
+    var napan = !a && b && !c;
+    var nanap = !a && b && c;
+    var nanan = !a && !b && !c;
+    var papop = (a && b) || c;
+    var papon = (a && b) || !c;
+    var panop = (a && !b) || c;
+    var panon = (a && !b) || !c;
+    var napop = (!a && b) || c;
+    var napon = (!a && b) || !c;
+    var nanop = (!a && !b) || c;
+    var nanon = (!a && !b) || !c;
+    var popap = (a || b) && !c;
+    var popan = (a || b) && c;
+    var ponap = (a || !b) && !c;
+    var ponan = (a || !b) && c;
+    var nopap = (!a || b) && c;
+    var nopan = (!a || b) && !c;
+    var nonap = (!a || !b) && c;
+    var nonan = (!a || !b) && !c;
+    var popop = a || b || c;
+    var popon = a || b || !c;
+    var ponop = a || !b || c;
+    var ponon = a || !b || !c;
+    var nopop = !a || b || c;
+    var nopon = !a || b || !c;
+    var nonop = !a || !b || c;
+    var nonon = !a || !b || !c;
+}

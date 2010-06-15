@@ -1,0 +1,10 @@
+﻿Snippets.ByRefUse :: Int32& i -> void
+{
+    Console.WriteLine(i.ToString());
+    Console.WriteLine(i.GetTypeCode());
+    var li = i;
+    Console.WriteLine(li.ToString());
+    Console.WriteLine(li.GetTypeCode());
+    i = li + i;
+    Snippets.ByRefUse(ref i);
+}

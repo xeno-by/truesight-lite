@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Reflection.Emit;
+using XenoGears;
+
+namespace Truesight.Parser.Impl.Ops
+{
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal static class OpCodeReference
+    {
+        private static Object _staticCtorLock = new Object();
+        private static bool _staticCtorAintRun = true;
+
+        private static HashSet<OpCode> _allOpCodes = new HashSet<OpCode>();
+
+        static OpCodeReference()
+        {
+            if (_staticCtorAintRun)
+            {
+                // todo. get a grasp on memory models and analyze safety of this code
+                // maybe we need a volatile modifier?!
+                lock (_staticCtorLock)
+                {
+                    if (_staticCtorAintRun)
+                    {
+                        try
+                        {
+                            %FILL_THE_HASHSET%
+                        }
+                        finally 
+                        {
+                            _staticCtorAintRun = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        public static ReadOnlyCollection<OpCode> AllOpCodes
+        {
+            get { return _allOpCodes.ToReadOnly(); }
+        }
+    }
+}

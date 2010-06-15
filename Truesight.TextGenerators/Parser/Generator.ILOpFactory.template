@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Reflection.Emit;
+using Truesight.Parser.Api.Ops;
+
+namespace Truesight.Parser.Impl.Reader
+{
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal static class ILOpFactory
+    {
+        public static ILOp Create(OpCode opcode, MethodBody body, BinaryReader reader, ReadOnlyCollection<ILOp> prefixes)
+        {
+            // the stuff below is important since the constructor will need to read the opcode once again
+            reader.BaseStream.Seek(-opcode.Size, SeekOrigin.Current);
+
+            %FILL_THE_SWITCH%
+        }
+    }
+}

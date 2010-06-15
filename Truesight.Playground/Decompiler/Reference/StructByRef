@@ -1,0 +1,7 @@
+﻿Snippets.StructByRef :: DateTime& x -> void
+{
+    x = DateTime.Now;
+    var foo = x.Ticks - DateTime.Now.Ticks;
+    var bar = x.IsDaylightSavingTime();
+    Snippets.StructByRefAux(x);
+}

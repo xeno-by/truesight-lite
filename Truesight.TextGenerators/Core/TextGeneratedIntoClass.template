@@ -1,0 +1,7 @@
+﻿namespace %NAMESPACE_NAME%
+{
+    %CLASS_DECLARATION%
+    {
+%GENERATED_TEXT%
+    }
+}

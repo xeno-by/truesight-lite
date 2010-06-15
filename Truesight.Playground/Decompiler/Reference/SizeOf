@@ -1,0 +1,6 @@
+﻿Snippets.SizeOf :: () -> bool
+{
+    var static = 4 + sizeof(IntPtr) == sizeof(SStatic);
+    var dynamic = 4 + sizeof(IntPtr) == sizeof(SDynamic);
+    return static && dynamic;
+}

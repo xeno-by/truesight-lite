@@ -1,0 +1,10 @@
+﻿Snippets.ByRefUse :: V1& v -> void
+{
+    Console.WriteLine(v.ToString());
+    Console.WriteLine(v.GetTypeCode());
+    var lv = v;
+    Console.WriteLine(lv.ToString());
+    Console.WriteLine(lv.GetTypeCode());
+    v = lv + v;
+    Snippets.ByRefUse(ref v);
+}

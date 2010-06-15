@@ -1,0 +1,10 @@
+﻿Snippets.ByRefUse :: R1& r -> void
+{
+    Console.WriteLine(r.ToString());
+    Console.WriteLine(r.GetTypeCode());
+    var lr = r;
+    Console.WriteLine(lr.ToString());
+    Console.WriteLine(lr.GetTypeCode());
+    r = lr + r;
+    Snippets.ByRefUse(ref r);
+}
