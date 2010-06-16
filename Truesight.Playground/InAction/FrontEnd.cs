@@ -186,7 +186,7 @@ namespace Truesight.Playground.InAction
                 _liftedLocals.Add(local);
                 _xhir.Locals.Add(local);
                 _xhir.Insert(_lastIndex++, onlyAss.Parent.Transform((Ref @ref) => 
-                    @ref.Sym == _params.Single() ? new Ref(_this) : @ref.DefaultTransform()));
+                    @ref.Sym == _params.First() ? new Ref(_this) : @ref.DefaultTransform()));
                 onlyAss.Parent.RemoveSelf();
             }
         }

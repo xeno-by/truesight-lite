@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace Truesight.Playground.InAction.Domain
 {
@@ -9,16 +8,22 @@ namespace Truesight.Playground.InAction.Domain
 
         public class SharingHint
         {
-            internal SharingHint() { }
+            internal SharingHint() {}
 
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            extern public SharingHint Private(params Object[] vars);
+            public SharingHint Private(params Object[] vars)
+            {
+                throw new NotSupportedException();
+            }
 
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            extern public SharingHint Local(params Object[] vars);
+            public SharingHint Local(params Object[] vars)
+            {
+                throw new NotSupportedException();
+            }
 
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            extern public SharingHint Global(params Object[] vars);
+            public SharingHint Global(params Object[] vars)
+            {
+                throw new NotSupportedException();
+            }
         }
     }
 }

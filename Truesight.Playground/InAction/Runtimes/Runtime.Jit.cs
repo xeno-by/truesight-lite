@@ -13,7 +13,6 @@ using XenoGears.Reflection.Emit.Hackarounds;
 
 namespace Truesight.Playground.InAction.Runtimes
 {
-    [DebuggerNonUserCode]
     internal partial class Runtime<T1, T2, T3>
     {
         private IKernel<T1, T2, T3> Jit(Type t_kernel)

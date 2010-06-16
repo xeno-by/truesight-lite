@@ -8,7 +8,7 @@ namespace Truesight.Playground.InAction
     [TestFixture]
     public partial class Tests
     {
-        [Test, Category("Hot")]
+        [Test]
         public void MatMulKernel()
         {
             var a = RandMatrix(16, 20);
@@ -22,7 +22,7 @@ namespace Truesight.Playground.InAction
             AssertAreTheSame(c, c_kernel);
         }
 
-        [Test]
+        [Test, Category("Hot")]
         public void MatMulKernel_Fast()
         {
             var a = RandMatrix(16, 20);
