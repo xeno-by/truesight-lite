@@ -8,7 +8,7 @@ namespace Truesight.Playground.InAction
     [TestFixture]
     public partial class Tests
     {
-        [Test]
+        [Test, Category("Hot")]
         public void MatMulKernel()
         {
             var a = RandMatrix(16, 20);

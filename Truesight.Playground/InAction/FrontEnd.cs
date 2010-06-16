@@ -416,14 +416,19 @@ namespace Truesight.Playground.InAction
                 },
                 (Ref @ref) =>
                 {
-                    var sym = (Sym)@ref.Sym;
-                    if (sym == _params.Single())
+                    var sym = @ref.Sym;
+                    if (sym.IsParam())
                     {
-                        return new Ref(_this);
+                        var param = sym.AssertCast<Param>();
+                        if (param == _params.First()) return new Ref(_this);
+                        else
+                        {
+                            return @ref.DefaultTransform();
+                        }
                     }
                     else
                     {
-                        var local = sym as Local;
+                        var local = sym.AssertCast<Local>();
                         if (local != null)
                         {
                             if (Alloc(local) == allocPrivate &&

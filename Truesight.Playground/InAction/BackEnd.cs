@@ -321,8 +321,12 @@ namespace Truesight.Playground.InAction
             else if (sym.IsParam())
             {
                 var p = (Param)sym;
-                var index = p == _this ? 0 : p == _blockIdx ? 1 :
-                    ((Func<int>)(() => { throw AssertionHelper.Fail(); }))();
+                var index = p == _this ? 0 : p == _blockIdx ? 1 : ((Func<int>)(() =>
+                {
+                    var i_param = _params.IndexOf(p1 => p1 == p);
+                    (i_param > 0).AssertTrue();
+                    return i_param;
+                }))();
                 il.ldarg(index);
             }
             else
