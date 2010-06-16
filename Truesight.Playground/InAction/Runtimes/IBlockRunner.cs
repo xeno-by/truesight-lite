@@ -1,6 +1,6 @@
 using Truesight.Playground.InAction.Domain;
 
-namespace Truesight.Playground.InAction.Runtime
+namespace Truesight.Playground.InAction.Runtimes
 {
     internal interface IBlockRunner<T1, T2, T3>
     {

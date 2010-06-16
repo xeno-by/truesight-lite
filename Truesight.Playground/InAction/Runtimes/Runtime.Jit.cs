@@ -11,7 +11,7 @@ using XenoGears.Reflection.Shortcuts;
 using XenoGears.Reflection.Emit;
 using XenoGears.Reflection.Emit.Hackarounds;
 
-namespace Truesight.Playground.InAction.Runtime
+namespace Truesight.Playground.InAction.Runtimes
 {
     [DebuggerNonUserCode]
     internal partial class Runtime<T1, T2, T3>

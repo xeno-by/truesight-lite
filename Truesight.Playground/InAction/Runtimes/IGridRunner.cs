@@ -1,4 +1,4 @@
-namespace Truesight.Playground.InAction.Runtime
+namespace Truesight.Playground.InAction.Runtimes
 {
     internal interface IGridRunner<T1, T2, T3>
     {

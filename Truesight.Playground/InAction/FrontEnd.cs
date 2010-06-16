@@ -14,7 +14,7 @@ using Truesight.Decompiler.Hir.Core.Symbols;
 using Truesight.Decompiler.Hir.Traversal;
 using Truesight.Decompiler.Hir.Traversal.Transformers;
 using Truesight.Playground.InAction.Domain;
-using Truesight.Playground.InAction.Runtime;
+using Truesight.Playground.InAction.Runtimes;
 using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Reflection;

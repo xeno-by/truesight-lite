@@ -5,7 +5,7 @@ using XenoGears.Functional;
 using XenoGears.Assertions;
 using System.Linq;
 
-namespace Truesight.Playground.InAction.Runtime
+namespace Truesight.Playground.InAction.Runtimes
 {
     internal partial class Runtime<T1, T2, T3> : IGridRunner<T1, T2, T3>
     {

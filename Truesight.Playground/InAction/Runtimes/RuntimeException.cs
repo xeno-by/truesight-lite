@@ -2,7 +2,7 @@
 using Truesight.Playground.InAction.Domain;
 using XenoGears.Assertions;
 
-namespace Truesight.Playground.InAction.Runtime
+namespace Truesight.Playground.InAction.Runtimes
 {
     internal class RuntimeException<T1, T2, T3> : Exception
     {
