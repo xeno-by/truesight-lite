@@ -85,8 +85,11 @@ namespace Truesight.Playground.InAction
 
             _t_xformed = t_xformed;
             _t_xformed.AddInterfaceImplementation(typeof(IBlockRunner<T1, T2, T3>));
-            _m_xformed = _t_xformed.DefineMethod("RunBlock", MA.Public, typeof(void), typeof(int3).MkArray());
+            _m_xformed = _t_xformed.DefineMethod("RunBlock", MA.Public, typeof(void), new []{typeof(int3), typeof(T1), typeof(T2), typeof(T3)});
             _m_xformed.DefineParameter(1, ParmA.None, "blockIdx");
+            _m_xformed.DefineParameter(2, ParmA.None, _m_kernel.GetParameters()[0].Name);
+            _m_xformed.DefineParameter(3, ParmA.None, _m_kernel.GetParameters()[1].Name);
+            _m_xformed.DefineParameter(4, ParmA.None, _m_kernel.GetParameters()[2].Name);
             CompileTransformedHir();
         }
 
