@@ -159,9 +159,9 @@ namespace Truesight.Playground.InAction
                 var replica = new Local(local.Name + "s", local.Type.MakeArrayType(3));
                 var init = new Assign(new Ref(replica), new Eval(new Apply(
                     new Lambda(replica.Type.GetConstructor(3.Times(typeof(int)).ToArray())),
-                    new Fld(typeof(int3).GetField("Z"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this))),
-                    new Fld(typeof(int3).GetField("Y"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this))),
-                    new Fld(typeof(int3).GetField("X"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this))))));
+                    new Fld(typeof(int3).GetField("Z"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true)),
+                    new Fld(typeof(int3).GetField("Y"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true)),
+                    new Fld(typeof(int3).GetField("X"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true)))));
                 _replicatedLocals.Add(local, replica);
                 _replicatedInits.Add(local, init);
                 _needsReplication.Add(local, false);
@@ -275,15 +275,15 @@ namespace Truesight.Playground.InAction
                     xhir.Add(new Loop
                     {
                         Init = new Block(new Assign(new Ref(_tids["z"]), new Const(0))),
-                        Test = Operator.LessThan(new Ref(_tids["z"]), new Fld(typeof(int3).GetField("Z"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this)))),
+                        Test = Operator.LessThan(new Ref(_tids["z"]), new Fld(typeof(int3).GetField("Z"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true))),
                         Body = new Block(new Loop
                         {
                             Init = new Block(new Assign(new Ref(_tids["y"]), new Const(0))),
-                            Test = Operator.LessThan(new Ref(_tids["y"]), new Fld(typeof(int3).GetField("Y"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this)))),
+                            Test = Operator.LessThan(new Ref(_tids["y"]), new Fld(typeof(int3).GetField("Y"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true))),
                             Body = new Block(new Loop
                             {
                                 Init = new Block(new Assign(new Ref(_tids["x"]), new Const(0))),
-                                Test = Operator.LessThan(new Ref(_tids["x"]), new Fld(typeof(int3).GetField("X"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this)))),
+                                Test = Operator.LessThan(new Ref(_tids["x"]), new Fld(typeof(int3).GetField("X"), new Prop(typeof(IGridApi).GetProperty("BlockDim"), new Ref(_this), true))),
                                 Body = new Block(xregion.Children),
                                 Iter = new Block(Operator.PreIncrement(new Ref(_tids["x"]))),
                             }),

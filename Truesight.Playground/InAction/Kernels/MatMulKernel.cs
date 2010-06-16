@@ -1,3 +1,4 @@
+using System;
 using Truesight.Playground.InAction.Domain;
 using XenoGears.Functional;
 
@@ -5,7 +6,7 @@ namespace Truesight.Playground.InAction.Kernels
 {
     internal abstract class MatMulKernel : Kernel<float[,], float[,], float[,]>
     {
-        public override void RunKernel(float[,] a, float[,] b, float[,] c)
+        protected override void RunKernel(float[,] a, float[,] b, float[,] c)
         {
             var row = BlockIdx.Y * BlockDim.Y + ThreadIdx.Y;
             var col = BlockIdx.X * BlockDim.X + ThreadIdx.X;

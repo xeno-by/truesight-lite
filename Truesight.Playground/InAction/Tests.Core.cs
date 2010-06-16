@@ -8,7 +8,7 @@ namespace Truesight.Playground.InAction
     [TestFixture]
     public partial class Tests
     {
-        [Test]
+        [Test, Category("Hot")]
         public void MatMulKernel()
         {
             var a = RandMatrix(16, 20);
@@ -16,13 +16,13 @@ namespace Truesight.Playground.InAction
             var c = ReferenceMul(a, b);
 
             var c_kernel = new float[16, 16];
-            var grid = new Grid{BlockDim = new dim3(4, 4, 1), GridDim = new dim3(4, 4, 1)};
+            var grid = new Grid{BlockDim = new dim3(4, 4, 1), GridDim = new dim3(5, 5, 1)};
             var runtime = new Runtime<float[,], float[,], float[,]>(grid, typeof(MatMulKernel));
             runtime.RunKernel(a, b, c_kernel);
             AssertAreTheSame(c, c_kernel);
         }
 
-        [Test, Category("Hot")]
+        [Test]
         public void MatMulKernel_Fast()
         {
             var a = RandMatrix(16, 20);
@@ -30,7 +30,7 @@ namespace Truesight.Playground.InAction
             var c = ReferenceMul(a, b);
 
             var c_kernel = new float[16, 16];
-            var grid = new Grid { BlockDim = new dim3(4, 4, 1), GridDim = new dim3(4, 4, 1) };
+            var grid = new Grid { BlockDim = new dim3(4, 4, 1), GridDim = new dim3(5, 5, 1) };
             var runtime = new Runtime<float[,], float[,], float[,]>(grid, typeof(MatMulKernel_Fast));
             runtime.RunKernel(a, b, c_kernel);
             AssertAreTheSame(c, c_kernel);

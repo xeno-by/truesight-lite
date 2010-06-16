@@ -7,7 +7,7 @@ namespace Truesight.Playground.InAction.Kernels
 {
     internal abstract class MatMulKernel_Fast : Kernel<float[,], float[,], float[,]>
     {
-        public override void RunKernel(float[,] a, float[,] b, float[,] c)
+        protected override void RunKernel(float[,] a, float[,] b, float[,] c)
         {
             (BlockDim.X == BlockDim.Y).AssertTrue();
             var c_value = 0f;

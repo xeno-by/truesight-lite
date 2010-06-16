@@ -325,7 +325,7 @@ namespace Truesight.Playground.InAction
                 {
                     var i_param = _params.IndexOf(p1 => p1 == p);
                     (i_param > 0).AssertTrue();
-                    return i_param;
+                    return i_param + 1;
                 }))();
                 il.ldarg(index);
             }
