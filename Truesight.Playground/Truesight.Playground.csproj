@@ -151,6 +151,27 @@
     <EmbeddedResource Include="Parser\Reference\ParseSnippetWithGuards" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InAction\Domain\Grid.cs" />
+    <Compile Include="InAction\Domain\Kernel.cs" />
+    <Compile Include="InAction\Kernels\MatMulKernel.cs" />
+    <Compile Include="InAction\Kernels\MatMulKernel_Fast.cs" />
+    <Compile Include="InAction\Kernels\Matrix.cs" />
+    <Compile Include="InAction\Kernels\SubMatrix.cs" />
+    <Compile Include="InAction\Runtime\Runtime.Core.cs" />
+    <Compile Include="InAction\Runtime\Runtime.Jit.cs" />
+    <Compile Include="InAction\Runtime\IGridRunner.cs" />
+    <Compile Include="InAction\Runtime\RuntimeException.cs" />
+    <Compile Include="InAction\Runtime\Runtime.Scheduler.cs" />
+    <Compile Include="InAction\Domain\Hints.cs" />
+    <Compile Include="InAction\BackEnd.cs" />
+    <Compile Include="InAction\Domain\Dim3.cs" />
+    <Compile Include="InAction\Runtime\IBlockRunner.cs" />
+    <Compile Include="InAction\Domain\IGrid.cs" />
+    <Compile Include="InAction\Domain\IGridApi.cs" />
+    <Compile Include="InAction\Domain\ISyncApi.cs" />
+    <Compile Include="InAction\FrontEnd.cs" />
+    <Compile Include="InAction\Domain\IKernel.cs" />
+    <Compile Include="InAction\Domain\Int3.cs" />
     <Compile Include="Parser\Tests.UnderDevelopment.cs" />
   </ItemGroup>
   <ItemGroup>
