@@ -108,7 +108,7 @@ namespace Truesight.Playground.InAction
             }
 
             var algoMethods = _m_kernel.DeclaringType.GetMethods(BF.AllInstance | BF.DeclOnly)
-                .Where(m => !m.Hierarchy().Contains(typeof(IKernel<T1, T2, T3>).GetMethod("RunKernel").AssertNotNull()))
+                .Where(m => m.Name != "RunKernel")
                 .Where(m => !forbiddenInAlgo.Contains(m)).ToReadOnly();
             algoMethods.ForEach(am => am.Decompile().Body.AssertThat(b => b.Family().None(c =>
             {
