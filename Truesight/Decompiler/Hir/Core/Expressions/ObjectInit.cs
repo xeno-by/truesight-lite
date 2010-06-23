@@ -26,6 +26,7 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
         // todo. make this observable and also report changes using FirePropertyChanging/Changed providing ListChangeEventArgs as a tag to the event
         private readonly List<MemberInfo> _impl = new List<MemberInfo>();
         public ReadOnlyCollection<MemberInfo> Members { get { return _impl.ToReadOnly(); } }
+        // todo. what about virtuality of member accesses?!
         public IDictionary<MemberInfo, Expression> MemberInits
         {
             get
