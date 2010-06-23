@@ -338,7 +338,6 @@
     if not exist "$(SolutionDir)Truesight.TextGenerators\Dependencies\" mkdir  "$(SolutionDir)Truesight.TextGenerators\Dependencies\"
     copy *.* "$(SolutionDir)Truesight.TextGenerators\Dependencies\"
 )</PostBuildEvent>
-    <PreBuildEvent>"$(ProjectDir)..\ThirdPartyStuff\autoversioner\AutoVersioner.exe" "$(ProjectDir)$(ProjectFileName)" "$(ProjectDir)Properties\AssemblyInfo.template" "$(ProjectDir)Properties\AssemblyInfo.cs"
-</PreBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)..\ThirdPartyStuff\autoversioner\AutoVersioner.exe" "$(ProjectDir)$(ProjectFileName)" "$(ProjectDir)Properties\AssemblyInfo.template" "$(ProjectDir)Properties\AssemblyInfo.cs"</PreBuildEvent>
   </PropertyGroup>
 </Project>
