@@ -103,7 +103,8 @@ namespace Truesight.Playground.InAction
             foreach (var m in forbiddenInAlgo.ToArray())
             {
                 var t_kernel = _m_kernel.DeclaringType;
-                var imap = t_kernel.GetInterfaceMap(m.DeclaringType).MapInterfaceToImpl();
+                var t_iface = m.DeclaringType;
+                var imap = t_kernel.MapInterfacesToImpls(t_iface);
                 forbiddenInAlgo.Add(imap[m]);
             }
 

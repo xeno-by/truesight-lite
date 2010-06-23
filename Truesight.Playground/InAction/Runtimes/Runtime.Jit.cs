@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using Truesight.Playground.InAction.Domain;
 using XenoGears.Functional;
 using XenoGears.Assertions;
@@ -30,9 +27,7 @@ namespace Truesight.Playground.InAction.Runtimes
                 ctor.il().ldarg(0).ldarg(1).stfld(f_runtime).ret();
 
                 // Redirect implementations of kernel APIs to the runtime
-                var ifacesToImpls = new Dictionary<MethodBase, MethodBase>();
-                ifacesToImpls.AddElements(t_kernel.GetInterfaceMap(typeof(IGridApi)).MapInterfaceToImpl());
-                ifacesToImpls.AddElements(t_kernel.GetInterfaceMap(typeof(ISyncApi)).MapInterfaceToImpl());
+                var ifacesToImpls = t_kernel.MapInterfacesToImpls(typeof(IGridApi), typeof(ISyncApi));
                 ifacesToImpls.ForEach(kvp =>
                 {
                     var apiDecl = kvp.Key;
