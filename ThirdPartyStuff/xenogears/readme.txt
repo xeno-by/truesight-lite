@@ -1,6 +1,6 @@
 This project requires XenoGears source code rather than binaries.
 Expected source location: ..\XenoGears (relative to the root of this checkout)
-URL to checkout code from: http://xenogears.googlecode.com/svn/trunk/
+You can get source code as follows: hg clone https://xenogears.googlecode.com/hg/
 
-That's done on purpose to integrate gears' codebase into the project and make it easy to introduce fixes and changes shared between all clients of gears.
-Due to the same reason I don't version XenoGears in AssemblyInfo - it ain't exist as an independent binary, rather it is integrated into every client's codebase.
+I'm using such a simple mechanism of referencing a 3rd-party codebase since at the moment XenoGears is still very much in flux.
+Thus, to make it easier to spot and fix bugs I've decided to use this code sharing scheme despite of possible instability introduced by totally uncontrollable reference.
