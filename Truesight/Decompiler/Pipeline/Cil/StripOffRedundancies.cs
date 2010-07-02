@@ -62,11 +62,17 @@ namespace Truesight.Decompiler.Pipeline.Cil
                         if (t != null && t.IsByRef) ass.Lhs = ass_deref.Target;
                     }
                 },
-                (Slot slot) =>
+                (Fld fld) =>
                 {
-                    var addr = slot.This as Addr;
-                    if (addr != null) slot.This = addr.Target;
-                    defaultTraverse(slot);
+                    var addr = fld.This as Addr;
+                    if (addr != null) fld.This = addr.Target;
+                    defaultTraverse(fld);
+                },
+                (Prop prop) =>
+                {
+                    var addr = prop.This as Addr;
+                    if (addr != null) prop.This = addr.Target;
+                    defaultTraverse(prop);
                 },
                 (Deref deref) =>
                 {
