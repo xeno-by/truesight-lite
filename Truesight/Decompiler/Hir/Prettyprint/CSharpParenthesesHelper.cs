@@ -181,6 +181,10 @@ namespace Truesight.Decompiler.Hir.Prettyprint
             {
                 return child.CSharpPriority() <= parent.CSharpPriority();
             }
+            else if (child is Default)
+            {
+                return false;
+            }
             else if (child is Apply)
             {
                 return false;
@@ -260,6 +264,10 @@ namespace Truesight.Decompiler.Hir.Prettyprint
                 return primaryPrio;
             }
             else if (e is SizeOf)
+            {
+                return unaryPrio;
+            }
+            else if (e is Default)
             {
                 return unaryPrio;
             }

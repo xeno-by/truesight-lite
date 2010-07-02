@@ -53,6 +53,7 @@ namespace Truesight.Parser.Api
         Unaligned,
         Volatile,
         Tail,
+        Initobj,
         Constrained,
         Cpblk,
         Initblk,

@@ -1,0 +1,5 @@
+﻿Snippets.StructOpAss :: S p -> void
+{
+    l = default(S);
+    p.x += l.x += 2;
+}

@@ -126,6 +126,11 @@ namespace Truesight.Decompiler.Hir.Traversal.Reducers
             return Dispatch(cvt);
         }
 
+        protected internal override T ReduceDefault(Default @default)
+        {
+            return Dispatch(@default);
+        }
+
         protected internal override T ReduceDeref(Deref deref)
         {
             return Dispatch(deref);

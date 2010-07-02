@@ -90,6 +90,7 @@
     <Compile Include="Decompiler\Hir\Core\Expressions\Conditional.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\Const.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\Convert.cs" />
+    <Compile Include="Decompiler\Hir\Core\Expressions\Default.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\Deref.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\Expression.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\Fld.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="Parser\Api\Ops\Endfilter.cs" />
     <Compile Include="Parser\Api\Ops\Endfinally.cs" />
     <Compile Include="Parser\Api\Ops\Initblk.cs" />
+    <Compile Include="Parser\Api\Ops\Initobj.cs" />
     <Compile Include="Parser\Api\Ops\Isinst.cs" />
     <Compile Include="Parser\Api\Ops\Jmp.cs" />
     <Compile Include="Parser\Api\Ops\Ldarg.cs" />

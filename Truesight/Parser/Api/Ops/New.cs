@@ -9,16 +9,15 @@
 
 namespace Truesight.Parser.Api.Ops
 {
-    // newobj, newarr, initobj
-    [global::Truesight.Parser.Impl.Ops.OpCodesAttribute(0x73, 0x8d, 0xfe15)]
+    // newobj, newarr
+    [global::Truesight.Parser.Impl.Ops.OpCodesAttribute(0x73, 0x8d)]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public sealed class New : global::Truesight.Parser.Impl.ILOp
     {
         public override global::Truesight.Parser.Api.IILOpType OpType { get { return global::Truesight.Parser.Api.IILOpType.New; } }
 
-        private readonly int? _ctor;
-        private readonly bool _isArray;
-        private readonly int? _type;
+        private readonly int? _ctorToken;
+        private readonly int? _typeToken;
 
         internal New(global::Truesight.Parser.Impl.MethodBody source, global::System.IO.BinaryReader reader)
             : this(source, reader, global::XenoGears.Functional.EnumerableExtensions.ToReadOnly(global::System.Linq.Enumerable.Empty<global::Truesight.Parser.Impl.ILOp>()))
@@ -31,43 +30,27 @@ namespace Truesight.Parser.Api.Ops
             // this is necessary for further verification
             var origPos = reader.BaseStream.Position;
 
-            // initializing _ctor
+            // initializing _ctorToken
             switch((ushort)OpSpec.OpCode.Value)
             {
                 case 0x73: //newobj
-                    _ctor = ReadMetadataToken(reader);
+                    _ctorToken = ReadMetadataToken(reader);
                     break;
                 case 0x8d: //newarr
-                case 0xfe15: //initobj
-                    _ctor = default(int?);
+                    _ctorToken = default(int?);
                     break;
                 default:
                     throw global::XenoGears.Assertions.AssertionHelper.Fail();
             }
 
-            // initializing _isArray
+            // initializing _typeToken
             switch((ushort)OpSpec.OpCode.Value)
             {
                 case 0x73: //newobj
-                case 0xfe15: //initobj
-                    _isArray = default(bool);
+                    _typeToken = default(int?);
                     break;
                 case 0x8d: //newarr
-                    _isArray = true;
-                    break;
-                default:
-                    throw global::XenoGears.Assertions.AssertionHelper.Fail();
-            }
-
-            // initializing _type
-            switch((ushort)OpSpec.OpCode.Value)
-            {
-                case 0x73: //newobj
-                    _type = default(int?);
-                    break;
-                case 0x8d: //newarr
-                case 0xfe15: //initobj
-                    _type = ReadMetadataToken(reader);
+                    _typeToken = ReadMetadataToken(reader);
                     break;
                 default:
                     throw global::XenoGears.Assertions.AssertionHelper.Fail();
@@ -88,8 +71,8 @@ namespace Truesight.Parser.Api.Ops
         {
             var opcode = global::Truesight.Parser.Impl.Reader.OpCodeReader.ReadOpCode(reader);
             global::XenoGears.Assertions.AssertionHelper.AssertNotNull(opcode);
-            // newobj, newarr, initobj
-            global::XenoGears.Assertions.AssertionHelper.AssertTrue(global::System.Linq.Enumerable.Contains(new ushort[]{0x73, 0x8d, 0xfe15}, (ushort)opcode.Value.Value));
+            // newobj, newarr
+            global::XenoGears.Assertions.AssertionHelper.AssertTrue(global::System.Linq.Enumerable.Contains(new ushort[]{0x73, 0x8d}, (ushort)opcode.Value.Value));
 
             return opcode.Value;
         }
@@ -99,7 +82,15 @@ namespace Truesight.Parser.Api.Ops
         {
             get
             {
-                return _ctor == null ? null : CtorFromToken(_ctor.Value);
+                switch((ushort)OpSpec.OpCode.Value)
+                {
+                    case 0x73: //newobj
+                        return CtorFromToken(global::XenoGears.Assertions.AssertionHelper.AssertValue(_ctorToken));
+                    case 0x8d: //newarr
+                        return Type != null ? global::XenoGears.Assertions.AssertionHelper.AssertSingle(Type.GetConstructors()) : null;
+                    default:
+                        throw global::XenoGears.Assertions.AssertionHelper.Fail();
+                }
             }
         }
 
@@ -107,7 +98,7 @@ namespace Truesight.Parser.Api.Ops
         {
             get
             {
-                return _ctor;
+                return _ctorToken;
             }
         }
 
@@ -115,15 +106,16 @@ namespace Truesight.Parser.Api.Ops
         {
             get
             {
-                var type = _type == null ? (Ctor != null ? Ctor.DeclaringType : null) : TypeFromToken(_type.Value);
-                if (type == null)
+                switch((ushort)OpSpec.OpCode.Value)
                 {
-                    return null;
+                    case 0x73: //newobj
+                        return Ctor != null ? Ctor.DeclaringType : null;
+                    case 0x8d: //newarr
+                        var elementType = TypeFromToken(global::XenoGears.Assertions.AssertionHelper.AssertValue(_typeToken));
+                        return elementType != null ? elementType.MakeArrayType() : null;
+                    default:
+                        throw global::XenoGears.Assertions.AssertionHelper.Fail();
                 }
-                else
-                {
-                    return _isArray ? type.MakeArrayType() : type;
-                };
             }
         }
 
@@ -131,7 +123,7 @@ namespace Truesight.Parser.Api.Ops
         {
             get
             {
-                return _type;
+                return _typeToken;
             }
         }
 
@@ -142,7 +134,7 @@ namespace Truesight.Parser.Api.Ops
             var name =  "new";
             var mods = new global::System.Collections.Generic.List<global::System.String>();
             var modSpec = global::XenoGears.Functional.EnumerableExtensions.StringJoin(global::System.Linq.Enumerable.Where(mods, mod => global::XenoGears.Functional.EnumerableExtensions.IsNeitherNullNorEmpty(mod)), ", ");
-            var operand = ((Ctor != null ? ConstructorInfoToString(Ctor) : (Type != null ? TypeToString(Type) : null)) ?? (((OpSpec.OpCode.Value == 0x8d /*newarr*/ ? "arr of " : "") + ("0x" + (_ctor ?? _type).Value.ToString("x8")))));
+            var operand = ((Ctor != null ? ConstructorInfoToString(Ctor) : (Type != null ? TypeToString(Type) : null)) ?? (((OpSpec.OpCode.Value == 0x8d /*newarr*/ ? "arr of " : "") + ("0x" + (_ctorToken ?? _typeToken).Value.ToString("x8")))));
 
             var parts = new []{offset, prefixSpec, name, modSpec, operand};
             var result = global::XenoGears.Functional.EnumerableExtensions.StringJoin(global::System.Linq.Enumerable.Where(parts, p => global::XenoGears.Functional.EnumerableExtensions.IsNeitherNullNorEmpty(p)), " ");

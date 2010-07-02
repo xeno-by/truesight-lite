@@ -29,5 +29,17 @@ namespace Truesight.Playground.Decompiler
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("Conditional2", BF.All));
         }
+
+        [Test]
+        public void StructOpAss()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("StructOpAss", BF.All));
+        }
+
+        [Test]
+        public void StructCtors()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
+        }
     }
 }

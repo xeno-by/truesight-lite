@@ -28,6 +28,7 @@ namespace Truesight.Decompiler.Hir
         Conditional,
         Const,
         Convert,
+        Default,
         Deref,
         Fld,
         Loophole,

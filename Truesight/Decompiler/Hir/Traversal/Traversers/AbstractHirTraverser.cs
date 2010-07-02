@@ -50,6 +50,7 @@ namespace Truesight.Decompiler.Hir.Traversal.Traversers
         protected internal virtual void TraverseConditional(Conditional cond) { cond.Unsupported(); }
         protected internal virtual void TraverseConst(Const @const) { @const.Unsupported(); }
         protected internal virtual void TraverseConvert(Convert cvt) { cvt.Unsupported(); }
+        protected internal virtual void TraverseDefault(Default @default) { @default.Unsupported(); }
         protected internal virtual void TraverseDeref(Deref deref) { deref.Unsupported(); }
         protected internal virtual void TraverseFld(Fld fld) { fld.Unsupported(); } 
         protected internal virtual void TraverseLoophole(Loophole loophole) { loophole.Unsupported(); }

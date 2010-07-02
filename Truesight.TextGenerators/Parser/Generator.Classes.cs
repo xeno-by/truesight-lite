@@ -455,7 +455,7 @@ namespace Truesight.TextGenerators.Parser
                             String tokenExpr; 
                             if (fkb.Name == "new")
                             {
-                                var rawTokenExpr = "(_ctor ?? _type).Value";
+                                var rawTokenExpr = "(_ctorToken ?? _typeToken).Value";
                                 rawTokenExpr = String.Format("(\"0x\" + {0}.ToString(\"x8\"))", rawTokenExpr);
 
                                 tokenExpr = "(OpSpec.OpCode.Value == 0x8d /*newarr*/ ? \"arr of \" : \"\") + ";

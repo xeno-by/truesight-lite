@@ -91,6 +91,10 @@ namespace Truesight.Decompiler.Pipeline.Cil
                 var typeIs = (TypeIs)n;
                 Traverse(typeIs.Target, log);
             }
+            else if (n is Default)
+            {
+                // do nothing - nowhere to drill into
+            }
             else if (n is CollectionInit)
             {
                 var ci = (CollectionInit)n;

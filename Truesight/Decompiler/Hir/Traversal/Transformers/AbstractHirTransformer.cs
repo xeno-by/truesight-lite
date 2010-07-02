@@ -56,6 +56,7 @@ namespace Truesight.Decompiler.Hir.Traversal.Transformers
         protected internal virtual Node TransformConditional(Conditional cond) { return cond.AcceptTransformer(this, true); }
         protected internal virtual Node TransformConst(Const @const) { return @const.AcceptTransformer(this, true); }
         protected internal virtual Node TransformConvert(Convert cvt) { return cvt.AcceptTransformer(this, true); }
+        protected internal virtual Node TransformDefault(Default @default) { return @default.AcceptTransformer(this, true); }
         protected internal virtual Node TransformDeref(Deref deref) { return deref.AcceptTransformer(this, true); }
         protected internal virtual Node TransformFld(Fld fld) { return fld.AcceptTransformer(this, true); }
         protected internal virtual Node TransformLoophole(Loophole loophole) { return loophole.AcceptTransformer(this, true); }

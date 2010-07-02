@@ -304,6 +304,11 @@ namespace Truesight.Decompiler.Hir.TypeInference
             Types.Add(typeAs, typeAs.Type);
         }
 
+        protected internal override void TraverseDefault(Default @default)
+        {
+            Types.Add(@default, @default.Type);
+        }
+
         protected internal override void TraverseBlock(Block block)
         {
             block.ForEach(Traverse);

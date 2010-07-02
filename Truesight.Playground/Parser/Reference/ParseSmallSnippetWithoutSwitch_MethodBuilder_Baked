@@ -43,7 +43,7 @@
 0x005a: ldc int 15
 0x005c: starg 0
 0x005e: ldc int 1
-0x005f: new Type[]
+0x005f: new Type[]::.ctor(int )
 0x0064: stloc 3
 0x0065: ldloc 3
 0x0066: ldc int 0
@@ -91,7 +91,7 @@
 0x00da: stind DateTime
 0x00df: ldloc 12
 0x00e1: ldc int 2
-0x00e2: new DateTime[]
+0x00e2: new DateTime[]::.ctor(int )
 0x00e7: stloc 15
 0x00e9: ldloc 15
 0x00eb: ldc int 0
@@ -160,7 +160,7 @@
 0x01b8: isinst ILOp
 0x01bd: branch false 0x01ef
 0x01c2: ldc int 2
-0x01c3: new String[]
+0x01c3: new String[]::.ctor(int )
 0x01c8: stloc 17
 0x01ca: ldloc 17
 0x01cc: ldc int 0
@@ -181,4 +181,3 @@
 0x01f5: pop
 0x01f6: nop
 0x01f7: ret
-

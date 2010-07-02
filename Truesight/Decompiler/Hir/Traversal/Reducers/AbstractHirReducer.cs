@@ -57,6 +57,7 @@ namespace Truesight.Decompiler.Hir.Traversal.Reducers
         protected internal virtual T ReduceConditional(Conditional cond) { throw cond.Unsupported(); }
         protected internal virtual T ReduceConst(Const @const) { throw @const.Unsupported(); }
         protected internal virtual T ReduceConvert(Convert cvt) { throw cvt.Unsupported(); }
+        protected internal virtual T ReduceDefault(Default @default) { throw @default.Unsupported(); }
         protected internal virtual T ReduceDeref(Deref deref) { throw deref.Unsupported(); }
         protected internal virtual T ReduceFld(Fld fld) { throw fld.Unsupported(); }
         protected internal virtual T ReduceLoophole(Loophole loophole) { throw loophole.Unsupported(); }

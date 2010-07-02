@@ -126,6 +126,11 @@ namespace Truesight.Decompiler.Hir.Traversal.Traversers
             Dispatch(cvt);
         }
 
+        protected internal override void TraverseDefault(Default @default)
+        {
+            Dispatch(@default);
+        }
+
         protected internal override void TraverseDeref(Deref deref)
         {
             Dispatch(deref);

@@ -106,13 +106,12 @@ namespace Truesight.TextGenerators.Parser.KnowledgeBase
                     yield return "yields.ref.or.val";
                 }
             }
-            else if (family == "newobj" || family == "initobj" || family == "newarr")
+            else if (family == "newobj" || family == "newarr")
             {
                 yield return "new";
 
                 var tag = "instantiates.";
-                if (family == "newobj") tag += "ref";
-                if (family == "initobj") tag += "val";
+                if (family == "newobj") tag += "obj";
                 if (family == "newarr") tag += "arr";
                 yield return tag;
             }
@@ -359,9 +358,9 @@ namespace Truesight.TextGenerators.Parser.KnowledgeBase
                 f_value.SetLazyInitializer(_ => f_useConstValue.Name + " ? " +
                     f_constValue.Name + " : " + cast + "Read" + TypeSpecFromSpec(kb).Capitalize() + "(reader)");
             }
-            else if (kb.Family == "isinst" ||
-                kb.Family == "stobj" || kb.Family == "ldobj" || kb.Family == "cpobj" || 
-                kb.Family == "mkrefany" || kb.Family == "refanyval" || kb.Family == "sizeof")
+            else if (kb.Family == "isinst" || kb.Family == "sizeof" ||
+                kb.Family == "initobj" || kb.Family == "stobj" || kb.Family == "ldobj" || kb.Family == "cpobj" || 
+                kb.Family == "mkrefany" || kb.Family == "refanyval")
             {
                 (kb.OpCode.OperandType == OperandType.InlineType).AssertTrue();
 
@@ -456,31 +455,25 @@ namespace Truesight.TextGenerators.Parser.KnowledgeBase
                 (kb.OpCode.OperandType == OperandType.InlineType ||
                 kb.OpCode.OperandType == OperandType.InlineMethod).AssertTrue();
 
+                var f_ctorToken = kb.EnsureField("_ctorToken", typeof(Int32?));
                 var p_ctorToken = kb.EnsureProperty("CtorToken", typeof(Int32?));
-                p_ctorToken.Getter = "_ctor;";
+                p_ctorToken.Getter = "_ctorToken;";
 
-                var f_ctor = kb.EnsureField("_ctor", typeof(Int32?));
-                var p_ctor = kb.EnsureProperty("Ctor", typeof(ConstructorInfo));
-                p_ctor.Getter = f_ctor.Name + " == null ? null : " + 
-                    "CtorFromToken(" + f_ctor.Name + ".Value)";
-
+                var f_typeToken = kb.EnsureField("_typeToken", typeof(Int32?));
                 var p_typeToken = kb.EnsureProperty("TypeToken", typeof(Int32?));
-                p_typeToken.Getter = "_type;";
+                p_typeToken.Getter = "_typeToken;";
 
-                var f_type = kb.EnsureField("_type", typeof(Int32?));
+                var p_ctor = kb.EnsureProperty("Ctor", typeof(ConstructorInfo));
+                if (kb.OpCode == OpCodes.Newobj) p_ctor.Getter = String.Format("CtorFromToken({0}.AssertValue({1}))", typeof(AssertionHelper).GetCSharpRef(ToCSharpOptions.ForCodegen), f_ctorToken.Name);
+                else if (kb.OpCode == OpCodes.Newarr) p_ctor.Getter = String.Format("Type != null ? {0}.AssertSingle(Type.GetConstructors()) : null", typeof(AssertionHelper).GetCSharpRef(ToCSharpOptions.ForCodegen));
+                else throw AssertionHelper.Fail();
+
                 var p_type = kb.EnsureProperty("Type", typeof(Type));
-                p_type.Getter = 
-                    "var type = " + f_type.Name +" == null ? "+
-                    "(" + p_ctor.Name + " != null ? " + p_ctor.Name + ".DeclaringType : null) " +
-                    ": TypeFromToken(" + f_type.Name + ".Value);" + Environment.NewLine +
-                    "if (type == null)" + Environment.NewLine +
-                    "{" + Environment.NewLine +
-                    "    return null;" + Environment.NewLine +
-                    "}" + Environment.NewLine +
-                    "else" + Environment.NewLine +
-                    "{" + Environment.NewLine +
-                    "    return _isArray ? type.MakeArrayType() : type;" + Environment.NewLine +
-                    "}";
+                if (kb.OpCode == OpCodes.Newobj) p_type.Getter = "Ctor != null ? Ctor.DeclaringType : null";
+                else if (kb.OpCode == OpCodes.Newarr) p_type.Getter = 
+                    String.Format("var elementType = TypeFromToken({0}.AssertValue({1}));", typeof(AssertionHelper).GetCSharpRef(ToCSharpOptions.ForCodegen), f_typeToken.Name) + Environment.NewLine +
+                    "return elementType != null ? elementType.MakeArrayType() : null;";
+                else throw AssertionHelper.Fail();
             }
             else if (kb.Family == "ldftn" || kb.Family == "jmp")
             {
@@ -634,24 +627,17 @@ namespace Truesight.TextGenerators.Parser.KnowledgeBase
             }
             else if (tag.StartsWith("instantiates."))
             {
-                var f_ctor = kb.Fields["_ctor"];
-                var f_type = kb.Fields["_type"];
+                var f_ctor = kb.Fields["_ctorToken"];
+                var f_type = kb.Fields["_typeToken"];
 
                 var what = tag.Substring("instantiates.".Length);
-                if (what == "ref")
+                if (what == "obj")
                 {
                     f_ctor.Initializer = "ReadMetadataToken(reader)";
-                }
-                else if (what == "val")
-                {
-                    f_type.Initializer = "ReadMetadataToken(reader)";
                 }
                 else if (what == "arr")
                 {
                     f_type.Initializer = "ReadMetadataToken(reader)";
-
-                    var f_arr = kb.EnsureField("_isArray", typeof(bool));
-                    f_arr.Initializer = "true";
                 }
                 else
                 {

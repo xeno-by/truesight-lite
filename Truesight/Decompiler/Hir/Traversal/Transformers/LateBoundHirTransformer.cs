@@ -118,6 +118,11 @@ namespace Truesight.Decompiler.Hir.Traversal.Transformers
             return Dispatch(cvt);
         }
 
+        protected internal override Node TransformDefault(Default @default)
+        {
+            return Dispatch(@default);
+        }
+
         protected internal override Node TransformDeref(Deref deref)
         {
             return Dispatch(deref);
