@@ -186,6 +186,7 @@
     <Compile Include="Decompiler\Pipeline\Cil\RestoreConditionalOperators.cs" />
     <Compile Include="Decompiler\Pipeline\Cil\RestoreObjectInitializers.cs" />
     <Compile Include="Decompiler\Pipeline\Cil\RestoreOpAssignOperators.cs" />
+    <Compile Include="Decompiler\Pipeline\Cil\StripOffRedundancies.cs" />
     <Compile Include="Decompiler\Pipeline\Context.cs" />
     <Compile Include="Decompiler\Pipeline\Flow\Cfg\BaseControlFlowGraph.cs" />
     <Compile Include="Decompiler\Pipeline\Flow\Cfg\BaseNamedEntity.cs" />
