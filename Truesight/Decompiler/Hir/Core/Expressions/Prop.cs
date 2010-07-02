@@ -10,6 +10,7 @@ using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Strings;
 using XenoGears.Traits.Cloneable;
+using XenoGears.Reflection;
 
 namespace Truesight.Decompiler.Hir.Core.Expressions
 {
@@ -20,8 +21,26 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
     {
         // note. this property ain't equal to the obvious value of Property.IsVirtual
         // it rather tells us about the virtuality of this particular invocation
-        private bool _invokedAsVirtual; public bool InvokedAsVirtual { get { return _invokedAsVirtual; } set { SetProperty("InvokedAsVirtual", v => _invokedAsVirtual = v, _invokedAsVirtual, value); } }
-        public PropertyInfo Property { get { return (PropertyInfo)Member; } set { SetProperty("Property", v => Member = v, Property, value); } }
+        private bool _invokedAsVirtual;
+        public bool InvokedAsVirtual
+        {
+            get { return _invokedAsVirtual; } 
+            set
+            {
+                if (value) (Property == null || Property.IsVirtual()).AssertTrue();
+                SetProperty("InvokedAsVirtual", v => _invokedAsVirtual = v, _invokedAsVirtual, value);
+            }
+        }
+
+        public PropertyInfo Property
+        {
+            get { return (PropertyInfo)Member; } 
+            set
+            {
+                if (value != null) (InvokedAsVirtual && !Property.IsVirtual()).AssertFalse();
+                SetProperty("Property", v => Member = v, Property, value);
+            }
+        }
 
         public Prop()
             : this(false)

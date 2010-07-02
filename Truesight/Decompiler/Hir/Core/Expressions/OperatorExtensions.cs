@@ -26,15 +26,5 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
         {
             return op.Args.Count() == 2;
         }
-
-        public static Conditional Ternary(this Operator op)
-        {
-            return op.AssertCast<Conditional>();
-        }
-
-        public static bool IsTernary(this Operator op)
-        {
-            return op.Args.Count() == 3;
-        }
     }
 }
