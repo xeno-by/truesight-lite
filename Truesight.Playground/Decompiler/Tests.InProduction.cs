@@ -157,5 +157,11 @@ namespace Truesight.Playground.Decompiler
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("StructOpAss", BF.All));
         }
+
+        [Test]
+        public void StructCtors()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
+        }
     }
 }

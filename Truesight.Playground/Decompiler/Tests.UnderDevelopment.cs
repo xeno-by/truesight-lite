@@ -7,12 +7,6 @@ namespace Truesight.Playground.Decompiler
     public class UnderDevelopment : Tests
     {
         [Test, Category("Hot")]
-        public void StructCtors()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
-        }
-
-        [Test]
         public void ComplexConditions1()
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("ComplexConditions1", BF.All));
