@@ -36,6 +36,7 @@ namespace Truesight.Decompiler.Pipeline.Cil
                 {
                     var t = deref.Target.InferType();
                     if (t != null && t.IsByRef) c.ReplaceWith(deref.Target);
+                    c = deref.Target;
                 }
 
                 c.Traverse();

@@ -64,18 +64,6 @@ namespace Truesight.Playground.Decompiler
             TestMethodDecompilation(typeof(Snippets).GetMethod("PreAndPost_WithPropsAndIndexers", BF.All));
         }
 
-        [Test, Category("Hot")]
-        public void ComplexConditions1()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("ComplexConditions1", BF.All));
-        }
-
-        [Test]
-        public void ComplexConditions2()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("ComplexConditions2", BF.All));
-        }
-
         [Test]
         public void ComplexConditions3()
         {
@@ -165,9 +153,9 @@ namespace Truesight.Playground.Decompiler
         }
 
         [Test]
-        public void SizeOf()
+        public void StructOpAss()
         {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("SizeOf", BF.All));
+            TestMethodDecompilation(typeof(Snippets).GetMethod("StructOpAss", BF.All));
         }
     }
 }

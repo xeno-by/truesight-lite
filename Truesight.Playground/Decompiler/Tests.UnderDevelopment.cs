@@ -7,15 +7,39 @@ namespace Truesight.Playground.Decompiler
     public class UnderDevelopment : Tests
     {
         [Test]
-        public void SimpleThrow()
+        public void StructCtors()
         {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("SimpleThrow", BF.All));
+            TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
+        }
+
+        [Test, Category("Hot")]
+        public void ComplexConditions1()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("ComplexConditions1", BF.All));
+        }
+
+        [Test]
+        public void ComplexConditions2()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("ComplexConditions2", BF.All));
+        }
+
+        [Test]
+        public void SizeOf()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("SizeOf", BF.All));
         }
 
         [Test]
         public void TypeOf()
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("TypeOf", BF.All));
+        }
+
+        [Test]
+        public void SimpleThrow()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("SimpleThrow", BF.All));
         }
 
         [Test]
@@ -28,18 +52,6 @@ namespace Truesight.Playground.Decompiler
         public void Conditional2()
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("Conditional2", BF.All));
-        }
-
-        [Test]
-        public void StructOpAss()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("StructOpAss", BF.All));
-        }
-
-        [Test]
-        public void StructCtors()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
         }
     }
 }
