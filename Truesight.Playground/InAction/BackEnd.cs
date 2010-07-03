@@ -89,13 +89,13 @@ namespace Truesight.Playground.InAction
 
         protected internal override void TraverseBreak(Break @break)
         {
-            var loop = IHierarchyExtensions.Parents(@break).OfType<Loop>().AssertFirst();
+            var loop = @break.Parents().OfType<Loop>().AssertFirst();
             il.br(breaks[loop]);
         }
 
         protected internal override void TraverseContinue(Continue @continue)
         {
-            var loop = IHierarchyExtensions.Parents(@continue).OfType<Loop>().AssertFirst();
+            var loop = @continue.Parents().OfType<Loop>().AssertFirst();
             il.br(continues[loop]);
         }
 
