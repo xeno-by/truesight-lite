@@ -41,7 +41,10 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             : base(NodeType.Label)
         {
             Id = id;
+
             Name = name ?? ("$" + Id.ToString().Substring(0, 4));
+            if (!Name.StartsWith("$")) Name += ("_" + Id.ToString().Substring(0, 4));
+            if (!Name.StartsWith("$")) Name = "$" + Name;
         }
 
         protected override bool EigenEquiv(Node node)
