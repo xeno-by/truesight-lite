@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Diagnostics;
 using Truesight.Decompiler.Hir.Core.Expressions;
 using Truesight.Decompiler.Hir.Traversal;
@@ -8,7 +6,6 @@ using Truesight.Decompiler.Hir.Traversal.Reducers;
 using Truesight.Decompiler.Hir.Traversal.Transformers;
 using Truesight.Decompiler.Hir.Traversal.Traversers;
 using XenoGears;
-using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Traits.Cloneable;
 
@@ -78,17 +75,7 @@ namespace Truesight.Decompiler.Hir.Core.Functional
             public Object bCallee { get { return (_node.Callee == null ? null : _node.Callee.Callee).CreateDebugProxy(this); } }
 
             [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-            public Object zArgs
-            {
-                get
-                {
-                    var app = _node.Callee;
-                    if (app == null) return new Object[0];
-
-                    var names = app.ArgsInfo.Zip((e, pi, i) => pi != null ? pi.Name : ("arg" + i)).ToReadOnly();
-                    return names.Zip(app.Args, (name, node) => node.CreateDebugProxy(this, name)).ToArray();
-                }
-            }
+            public Object zArgs { get { return _node.Callee.ArgsInfo; } }
         }
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
@@ -110,17 +97,7 @@ namespace Truesight.Decompiler.Hir.Core.Functional
             public Object bCallee { get { return _node.Callee.CreateDebugProxy(this); } }
 
             [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-            public Object zArgs
-            {
-                get
-                {
-                    var app = _node.Callee;
-                    if (app == null) return new Object[0];
-
-                    var names = app.ArgsInfo.Zip((e, pi, i) => pi != null ? pi.Name : ("arg" + i)).ToReadOnly();
-                    return names.Zip(app.Args, (name, node) => node.CreateDebugProxy(this, name)).ToArray();
-                }
-            }
+            public Object zArgs { get { return _node.Callee.ArgsInfo; } }
         }
     }
 }

@@ -109,6 +109,7 @@
     <Compile Include="Decompiler\Hir\Core\Expressions\TypeIs.cs" />
     <Compile Include="Decompiler\Hir\Core\Expressions\UnaryOperator.cs" />
     <Compile Include="Decompiler\Hir\Core\Functional\Apply.cs" />
+    <Compile Include="Decompiler\Hir\Core\Functional\ArgsInfo.cs" />
     <Compile Include="Decompiler\Hir\Core\Functional\Eval.cs" />
     <Compile Include="Decompiler\Hir\Core\Functional\InvocationStyle.cs" />
     <Compile Include="Decompiler\Hir\Core\Functional\Lambda.cs" />

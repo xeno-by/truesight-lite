@@ -131,7 +131,7 @@ namespace Truesight.Decompiler.Hir.Traversal
             }
         }
 
-        public static ReadOnlyCollection<Tuple<Expression, ParamInfo>> InvocationArgsInfo(this Node n)
+        public static ArgsInfo InvocationArgsInfo(this Node n)
         {
             var ci = n as CollectionInit;
             if (ci != null) return ci.Ctor.InvocationArgsInfo();
@@ -149,31 +149,6 @@ namespace Truesight.Decompiler.Hir.Traversal
             {
                 var eval = n.AssertCast<Eval>();
                 return eval.Callee.InvocationArgsInfo();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static ReadOnlyDictionary<Expression, ParamInfo> InvocationArgsMap(this Node n)
-        {
-            var ci = n as CollectionInit;
-            if (ci != null) return ci.Ctor.InvocationArgsMap();
-
-            var oi = n as ObjectInit;
-            if (oi != null) return oi.Ctor.InvocationArgsMap();
-
-            if (n == null) return null;
-            if (n is Apply)
-            {
-                var app = n.AssertCast<Apply>();
-                return app.ArgsMap;
-            }
-            else if (n is Eval)
-            {
-                var eval = n.AssertCast<Eval>();
-                return eval.Callee.InvocationArgsMap();
             }
             else
             {
@@ -229,7 +204,7 @@ namespace Truesight.Decompiler.Hir.Traversal
             return app.Args;
         }
 
-        public static ReadOnlyCollection<Tuple<Expression, ParamInfo>> InvocationIndexersInfo(this Node n)
+        public static ArgsInfo InvocationIndexersInfo(this Node n)
         {
             var prop = n.InvokedProp();
             if (prop == null) return null;
@@ -238,17 +213,6 @@ namespace Truesight.Decompiler.Hir.Traversal
             if (app == null) return null;
 
             return app.ArgsInfo;
-        }
-
-        public static ReadOnlyDictionary<Expression, ParamInfo> InvocationIndexersMap(this Node n)
-        {
-            var prop = n.InvokedProp();
-            if (prop == null) return null;
-
-            var app = prop.Parent as Apply;
-            if (app == null) return null;
-
-            return app.ArgsMap;
         }
 
         public static Prop ReadProp(this Node n)
