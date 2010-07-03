@@ -215,5 +215,12 @@ namespace Truesight.Decompiler.Hir.Traversal
 
             return null;
         }
+
+        public static Label ResolveLabel(this Goto @goto)
+        {
+            var all_labels = @goto.Hierarchy().Last().Family().OfType<Label>();
+            var label = all_labels.SingleOrDefault2(l => l.Id == @goto.LabelId);
+            return label ?? new Label(@goto.LabelId);
+        }
     }
 }

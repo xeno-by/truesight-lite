@@ -4,6 +4,7 @@ using Truesight.Decompiler.Hir.Traversal.Reducers;
 using Truesight.Decompiler.Hir.Traversal.Transformers;
 using Truesight.Decompiler.Hir.Traversal.Traversers;
 using XenoGears.Traits.Cloneable;
+using Truesight.Decompiler.Hir.Traversal;
 
 namespace Truesight.Decompiler.Hir.Core.ControlFlow
 {
@@ -12,11 +13,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
     [DebuggerNonUserCode]
     public class Goto : Node
     {
-        private Guid _label; 
-        public Guid Label
+        private Guid _labelId; 
+        public Guid LabelId
         {
-            get { return _label; } 
-            set { SetProperty("Label", v => _label = v, _label, value); }
+            get { return _labelId; } 
+            set { SetProperty("LabelId", v => _labelId = v, _labelId, value); }
         }
 
         public Goto()
@@ -27,7 +28,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
         public Goto(Guid labelId)
             : base(NodeType.Goto)
         {
-            Label = labelId;
+            LabelId = labelId;
         }
 
         public Goto(Label label)
@@ -39,12 +40,12 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
         {
             if (!base.EigenEquiv(node)) return false;
             var other = node as Goto;
-            return Equals(this.Label, other.Label);
+            return Equals(this.LabelId, other.LabelId);
         }
 
         protected override int EigenHashCode()
         {
-            return base.EigenHashCode() ^ Label.GetHashCode();
+            return base.EigenHashCode() ^ LabelId.GetHashCode();
         }
 
         public new Goto DeepClone()
@@ -59,7 +60,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             if (forceDefaultImpl)
             {
                 var visited = new Goto();
-                visited.Label = Label;
+                visited.LabelId = LabelId;
                 return visited;
             }
             else
@@ -88,7 +89,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
             [DebuggerDisplay("{bLabel, nq}{\"\", nq}", Name = "Label")]
             [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
-            public Guid bLabel { get { return _node.Label; } }
+            public Object bLabel { get { return _node.ResolveLabel().CreateDebugProxy(null); } }
         }
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
@@ -107,7 +108,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
             [DebuggerDisplay("{bLabel, nq}{\"\", nq}", Name = "Label")]
             [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
-            public Guid bLabel { get { return _node.Label; } }
+            public Object bLabel { get { return _node.ResolveLabel().CreateDebugProxy(null); } }
         }
     }
 }

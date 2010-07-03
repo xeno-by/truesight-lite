@@ -12,12 +12,36 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
     [DebuggerNonUserCode]
     public class Label : Node
     {
-        private Guid _id = Guid.NewGuid();
-        public Guid Id { get { return _id; } }
+        public Guid Id { get; private set; }
+
+        private String _name;
+        public String Name
+        {
+            get { return _name; }
+            private set { SetProperty("Name", v => _name = v, _name, value); }
+        }
 
         public Label()
+            : this(Guid.NewGuid(), null)
+        {
+        }
+
+        public Label(Guid id)
+            : this(id, null)
+        {
+            
+        }
+
+        public Label(String name)
+            : this(Guid.NewGuid(), name)
+        {
+        }
+
+        public Label(Guid id, String name)
             : base(NodeType.Label)
         {
+            Id = id;
+            Name = name ?? ("$" + Id.ToString().Substring(0, 4));
         }
 
         protected override bool EigenEquiv(Node node)
@@ -44,7 +68,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             if (forceDefaultImpl)
             {
                 var visited = new Label();
-                visited._id = _id;
+                visited.Id = Id;
                 return visited;
             }
             else
@@ -73,7 +97,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
             [DebuggerDisplay("{bId, nq}{\"\", nq}", Name = "Id")]
             [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
-            public Guid bId { get { return _node._id; } }
+            public Guid bId { get { return _node.Id; } }
+
+            [DebuggerDisplay("{cName, nq}{\"\", nq}", Name = "Name")]
+            [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
+            public String cName { get { return _node.Name; } }
         }
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
@@ -92,7 +120,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
             [DebuggerDisplay("{bId, nq}{\"\", nq}", Name = "Id")]
             [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
-            public Guid bId { get { return _node._id; } }
+            public Guid bId { get { return _node.Id; } }
+
+            [DebuggerDisplay("{cName, nq}{\"\", nq}", Name = "Name")]
+            [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
+            public String cName { get { return _node.Name; } }
         }
     }
 }

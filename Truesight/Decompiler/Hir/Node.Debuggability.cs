@@ -17,10 +17,10 @@ namespace Truesight.Decompiler.Hir
     public abstract partial class Node
     {
         public sealed override String ToString() { return ToDebugString_WithParentInfo(); }
-//        protected String ToDebugString_WithoutParentInfo() { return base.ToString(); }
-//        protected String ToDebugString_WithParentInfo() { return base.ToString(); }
-        protected String ToDebugString_WithoutParentInfo() { return ToDebugString(false); }
-        protected String ToDebugString_WithParentInfo() { return ToDebugString(true); }
+//        public String ToDebugString_WithoutParentInfo() { return base.ToString(); }
+//        public String ToDebugString_WithParentInfo() { return base.ToString(); }
+        public String ToDebugString_WithoutParentInfo() { return ToDebugString(false); }
+        public String ToDebugString_WithParentInfo() { return ToDebugString(true); }
         private String ToDebugString(bool withParentInfo)
         {
             if (this is Lambda)
