@@ -106,6 +106,35 @@ namespace Truesight.Decompiler.Hir.Traversal
             }
         }
 
+        public static bool InvokedAsCtor(this Node n)
+        {
+            var ci = n as CollectionInit;
+            if (ci != null) return ci.Ctor.InvokedAsCtor();
+
+            var oi = n as ObjectInit;
+            if (oi != null) return oi.Ctor.InvokedAsCtor();
+
+            var lam = n.InvokedLambda();
+            return lam == null ? false : lam.InvokedAsCtor;
+        }
+
+        public static bool InvokedAsVirtual(this Node n)
+        {
+            var ci = n as CollectionInit;
+            if (ci != null) return ci.Ctor.InvokedAsVirtual();
+
+            var oi = n as ObjectInit;
+            if (oi != null) return oi.Ctor.InvokedAsVirtual();
+
+            var lam = n.InvokedLambda();
+            if (lam != null) return lam.InvokedAsVirtual;
+
+            var prop = n.InvokedProp();
+            if (prop != null) return prop.InvokedAsVirtual;
+
+            return false;
+        }
+
         public static IList<Expression> InvocationArgs(this Node n)
         {
             var ci = n as CollectionInit;

@@ -3,19 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using Truesight.Decompiler.Hir.Core.Expressions;
 using XenoGears.Assertions;
 using XenoGears.Functional;
 using XenoGears.Reflection;
+using Truesight.Decompiler.Hir.Traversal;
+using XenoGears.Reflection.Generics;
+using XenoGears.Strings;
+using XenoGears.Traits.Dumpable;
+using Truesight.Decompiler.Hir.TypeInference;
 
 namespace Truesight.Decompiler.Hir.Core.Functional
 {
-    [DebuggerDisplay("{ToDebugString_WithParentInfo(), nq}{\"\", nq}")]
+    [DebuggerDisplay("{ToDebugString(), nq}{\"\", nq}")]
     [DebuggerTypeProxy(typeof(ArgsInfoDebugView))]
     [DebuggerNonUserCode]
-    public class ArgsInfo : IEnumerable<Tuple<Expression, ParamInfo>>
+    public class ArgsInfo : IEnumerable<Tuple<Expression, ParamInfo>>, IDumpableAsText
     {
         private ReadOnlyCollection<Tuple<Expression, ParamInfo>> ExtractData(Apply app)
         {
@@ -57,8 +64,9 @@ namespace Truesight.Decompiler.Hir.Core.Functional
 
         #region Implementation of boilerplate stuff
 
+        private readonly Apply _app; public Apply Apply { get { return _app; } }
         private ReadOnlyCollection<Tuple<Expression, ParamInfo>> _data;
-        public ArgsInfo(Apply app) { _data = ExtractData(app); }
+        public ArgsInfo(Apply app) { _app = app; _data = ExtractData(app); }
 
         IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
         public IEnumerator<Tuple<Expression, ParamInfo>> GetEnumerator() { return _data.GetEnumerator(); }
@@ -74,7 +82,34 @@ namespace Truesight.Decompiler.Hir.Core.Functional
         public Expression this[ParameterInfo param] { get { var entry = _data.SingleOrDefault(t => t.Item2.Metadata == param); return entry == null ? null : entry.Item1; } }
         public ParamInfo this[Expression arg] { get { var entry = _data.SingleOrDefault(t => t.Item1 == arg); return entry == null ? null : entry.Item2; } }
 
-        private String ToDebugString() { return String.Format("Count = {0}", this.Count()); }
+        public sealed override String ToString() { return this.DumpAsText(); }
+        private String ToDebugString() { return this.DumpAsText(); }
+        void IDumpableAsText.DumpAsText(TextWriter writer)
+        {
+            var m = Apply.InvokedMethod();
+            if (m != null)
+            {
+                if (Apply.InvokedAsVirtual()) writer.Write("virtual ");
+                writer.Write(m.DeclaringType.GetCSharpRef(ToCSharpOptions.Informative) + ".");
+                writer.Write(m.Name);
+                writer.Write(" :: ");
+            }
+
+            var s_params = Params.Select(p =>
+            {
+                var buf = new StringBuilder();
+                buf.Append(p.Type.GetCSharpRef(ToCSharpOptions.Informative));
+                if (p.Name.IsNeitherNullNorEmpty()) buf.Append(" " + p.Name);
+                return buf.ToString();
+            }).StringJoin(" -> ");
+            if (s_params.IsEmpty()) s_params = "()";
+            writer.Write(s_params);
+
+            var ret = Apply.Type().Ret();
+            if (Apply.InvokedAsCtor()) ret = m.DeclaringType;
+            writer.Write(" -> " + ret.GetCSharpRef(ToCSharpOptions.Informative));
+        }
+
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
         protected internal class ArgsInfoDebugView
@@ -91,7 +126,7 @@ namespace Truesight.Decompiler.Hir.Core.Functional
                 get
                 {
                     var names = _obj.Zip((e, pi, i) => pi != null ? pi.Name : ("arg" + i)).ToReadOnly();
-                    return names.Zip(_obj.Args, (name, node) => node.CreateDebugProxy(this, name)).ToArray();
+                    return names.Zip(_obj.Args, (name, node) => node.CreateDebugProxy(_obj._app.CreateDebugProxy(null), name)).ToArray();
                 }
             }
         }
