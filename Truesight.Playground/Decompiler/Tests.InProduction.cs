@@ -163,5 +163,11 @@ namespace Truesight.Playground.Decompiler
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("StructCtors", BF.All));
         }
+
+        [Test]
+        public void Default()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("Default", BF.All));
+        }
     }
 }
