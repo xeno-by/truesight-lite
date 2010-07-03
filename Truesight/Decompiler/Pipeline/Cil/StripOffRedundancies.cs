@@ -34,7 +34,7 @@ namespace Truesight.Decompiler.Pipeline.Cil
                 var deref = c as Deref;
                 if (deref != null)
                 {
-                    var t = deref.Target.InferType();
+                    var t = deref.Target.Type();
                     if (t != null && t.IsByRef) c.ReplaceWith(deref.Target);
                     c = deref.Target;
                 }
@@ -59,7 +59,7 @@ namespace Truesight.Decompiler.Pipeline.Cil
                     var ass_deref = ass.Lhs as Deref;
                     if (ass_deref != null)
                     {
-                        var t = ass_deref.Target.InferType();
+                        var t = ass_deref.Target.Type();
                         if (t != null && t.IsByRef) ass.Lhs = ass_deref.Target;
                     }
                 },
@@ -77,7 +77,7 @@ namespace Truesight.Decompiler.Pipeline.Cil
                 },
                 (Deref deref) =>
                 {
-                    var t = deref.Target.InferType();
+                    var t = deref.Target.Type();
                     if (t != null && t.IsByRef) throw AssertionHelper.Fail();
                     defaultTraverse(deref);
                 },

@@ -8,7 +8,7 @@ namespace Truesight.Decompiler.Hir.TypeInference
     [DebuggerNonUserCode]
     public static class TypeInferenceApi
     {
-        public static Type InferType(this Node n)
+        public static Type Type(this Node n)
         {
             if (n == null) return null;
 

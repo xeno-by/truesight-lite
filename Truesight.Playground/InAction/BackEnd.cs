@@ -233,7 +233,7 @@ namespace Truesight.Playground.InAction
 
         protected internal override void TraverseConvert(Convert cvt)
         {
-            var s = cvt.InferType();
+            var s = cvt.Type();
             var t = cvt.Type;
 
             Traverse(cvt.Source);

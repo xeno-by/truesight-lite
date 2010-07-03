@@ -140,7 +140,7 @@ namespace Truesight.Decompiler.Hir.Prettyprint
                                 if (!isArrayIndexer)
                                 {
                                     var @this = hasThis ? apply.Args.First() : null;
-                                    var t_this = @this.InferType();
+                                    var t_this = @this.Type();
                                     var is_ptr = t_this != null && t_this.IsPointer;
                                     _writer.Write(is_ptr ? "->" : ".");
                                 }
@@ -225,7 +225,7 @@ namespace Truesight.Decompiler.Hir.Prettyprint
                     if (!isDefaultIndexer)
                     {
                         var @this = ((Prop)apply.Callee).This;
-                        var t_this = @this.InferType();
+                        var t_this = @this.Type();
                         var is_ptr = t_this != null && t_this.IsPointer;
                         _writer.Write(is_ptr ? "->" : ".");
                     }
