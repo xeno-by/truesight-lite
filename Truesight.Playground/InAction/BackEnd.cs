@@ -344,8 +344,8 @@ namespace Truesight.Playground.InAction
             var opt = op.OperatorType;
             if (opt.IsAssign())
             {
-                rhs = rhs ?? new Const(1); // hack for inc/decrements
-                var equiv = new Assign(lhs, Operator.Create(opt.Unassign(), lhs, rhs));
+                // todo. implement this with the use of SafeExpandOpAssign
+                var equiv = op.UnsafeExpandOpAssign();
                 Traverse(equiv);
             }
             else if (opt == OperatorType.AndAlso)
