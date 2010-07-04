@@ -240,7 +240,7 @@ namespace Truesight.Decompiler.Hir.Prettyprint
             else
             {
                 // todo. return to this when lambdas decompilation is implemented
-                _writer.Write("λ");
+                _writer.Write(Syms.Lambda);
             }
 
         }
@@ -248,7 +248,7 @@ namespace Truesight.Decompiler.Hir.Prettyprint
         protected internal override void TraverseLambda(Lambda lambda)
         {
             // todo. return to this when lambdas decompilation is implemented
-            _writer.Write("λ");
+            _writer.Write(Syms.Lambda);
         }
 
         private void TraverseArgs(IEnumerable<Tuple<Expression, ParamInfo>> args)
