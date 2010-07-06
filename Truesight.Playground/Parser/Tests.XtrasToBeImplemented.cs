@@ -26,7 +26,7 @@ namespace Truesight.Playground.Parser
 #pragma warning restore 618,612
 
             var parsed = m.ParseBody(true);
-            TestParseResult(parsed);
+            VerifyResult(parsed);
         }
 
         [Test]

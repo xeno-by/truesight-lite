@@ -17,7 +17,7 @@ namespace Truesight.Playground.Parser
         {
             var snippet = typeof(Snippets).GetMethod("SmallSnippetWithoutSwitch", BF.All);
             var parsed = snippet.ParseBody(true);
-            TestParseResult(parsed);
+            VerifyResult(parsed);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Truesight.Playground.Parser
             var t_created = t.CreateType();
             var m_created = t_created.GetMethod("SmallSnippet");
             var parsed = m_created.ParseBody(true);
-            TestParseResult(parsed);
+            VerifyResult(parsed);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Truesight.Playground.Parser
             var snippet = typeof(Snippets).GetMethod("SmallSnippetWithoutSwitch", BF.All);
             var rawIL = snippet.GetMethodBody().GetILAsByteArray();
             var parsed = rawIL.ParseRawIL(snippet.Module);
-            TestParseResult(parsed);
+            VerifyResult(parsed);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Truesight.Playground.Parser
             var snippet = typeof(Snippets).GetMethod("SmallSnippetWithoutSwitch", BF.All);
             var rawIL = snippet.GetMethodBody().GetILAsByteArray();
             var parsed = rawIL.ParseRawIL();
-            TestParseResult(parsed);
+            VerifyResult(parsed);
         }
     }
 }
