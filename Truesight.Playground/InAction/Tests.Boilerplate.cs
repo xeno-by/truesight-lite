@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using XenoGears.Functional;
-using XenoGears.Logging;
 using XenoGears.Assertions;
 
 namespace Truesight.Playground.InAction
@@ -27,7 +27,7 @@ namespace Truesight.Playground.InAction
 
         private void PrintMatrix(String headline, float[,] m)
         {
-            Log.Trace(headline + Environment.NewLine + m.StringJoin() + Environment.NewLine);
+            Trace.Write(headline + Environment.NewLine + m.StringJoin() + Environment.NewLine);
         }
 
         private void AssertAreTheSame(float[,] a, float[,] b)
@@ -47,12 +47,12 @@ namespace Truesight.Playground.InAction
             }))() : false;
             if (!areTheSame)
             {
-                Log.TraceLine("*".Repeat(120));
-                Log.TraceLine("ERROR! Calculated matrix ain't equal to reference result.");
-                Log.TraceLine();
+                Trace.WriteLine("*".Repeat(120));
+                Trace.WriteLine("ERROR! Calculated matrix ain't equal to reference result.");
+                Trace.WriteLine(String.Empty);
 
                 PrintMatrix("Expected: ", a);
-                Log.TraceLine();
+                Trace.WriteLine(String.Empty);
                 PrintMatrix("Actual: ", b);
                 throw AssertionHelper.Fail();
             }

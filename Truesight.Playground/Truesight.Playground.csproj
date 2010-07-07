@@ -106,8 +106,8 @@
     <EmbeddedResource Include="Decompiler\Reference\ExoticOperators1" />
     <EmbeddedResource Include="Decompiler\Reference\ExoticOperators2" />
     <EmbeddedResource Include="Decompiler\Reference\ExoticOperators3" />
-    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_.ctor_TextWriter" />
-    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_.ctor_TextWriter_String" />
+    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_TextWriter" />
+    <EmbeddedResource Include="Decompiler\Reference\IndentedTextWriter_TextWriter_String" />
     <EmbeddedResource Include="Decompiler\Reference\Int32_TryParse_String_Int32!" />
     <EmbeddedResource Include="Decompiler\Reference\IrregularControlFlow" />
     <EmbeddedResource Include="Decompiler\Reference\Iter" />

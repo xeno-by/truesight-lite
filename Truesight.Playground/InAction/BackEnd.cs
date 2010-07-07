@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using Truesight.Decompiler.Hir.Core.ControlFlow;
@@ -14,7 +15,6 @@ using XenoGears.Logging;
 using XenoGears.Reflection.Emit;
 using XenoGears.Functional;
 using XenoGears.Assertions;
-using XenoGears.Traits.Hierarchy;
 using XenoGears.Reflection;
 using Convert = Truesight.Decompiler.Hir.Core.Expressions.Convert;
 using HirLabel = Truesight.Decompiler.Hir.Core.ControlFlow.Label;
@@ -31,7 +31,7 @@ namespace Truesight.Playground.InAction
     {
         private void CompileTransformedHir()
         {
-            Log.TraceLine(_xhir.DumpAsText());
+            Trace.WriteLine(_xhir.DumpAsText());
             Traverse(_xhir);
             il.ret();
         }
