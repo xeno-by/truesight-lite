@@ -38,7 +38,7 @@
 0x0049: ldloc 2 (y)
 0x004a: cast val->ref Object
 0x004f: call String String::Concat(Object arg0, Object arg1, Object arg2)
-0x0054: call void Trace::WriteLine(String message)
+0x0054: call void Log::WriteLine(String message)
 0x0059: nop
 0x005a: ldc int 15
 0x005c: starg 0 (a)
@@ -73,7 +73,7 @@
 0x00a1: ldc int 8
 0x00a2: cast val->ref Object
 0x00a7: call String String::Concat(Object arg0, Object arg1)
-0x00ac: call void Trace::WriteLine(String message)
+0x00ac: call void Log::WriteLine(String message)
 0x00b1: nop
 0x00b2: new NotSupportedException::.ctor()
 0x00b7: throw
@@ -181,3 +181,4 @@
 0x01ef: pop
 0x01f0: nop
 0x01f1: ret
+

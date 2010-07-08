@@ -31,7 +31,7 @@ namespace Truesight.Playground.InAction
     {
         private void CompileTransformedHir()
         {
-            Trace.WriteLine(_xhir.DumpAsText());
+            Log.WriteLine(_xhir.DumpAsText());
             Traverse(_xhir);
             il.ret();
         }

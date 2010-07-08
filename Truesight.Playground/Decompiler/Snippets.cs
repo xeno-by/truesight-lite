@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using XenoGears.Exceptions;
+using XenoGears.Logging;
 using XenoGears.Reflection;
 using System.Linq;
 using XenoGears.Strings;
@@ -627,12 +627,12 @@ namespace Truesight.Playground.Decompiler
                 }
                 finally
                 {
-                    Trace.WriteLine("Finally in IOX handler");
+                    Log.WriteLine("Finally in IOX handler");
                 }
             }
             catch (Exception ex)
             {
-                Trace.WriteLine(ex);
+                Log.WriteLine(ex);
                 throw;
             }
         }

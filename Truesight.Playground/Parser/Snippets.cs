@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Truesight.Parser.Api;
 using Truesight.Parser.Impl;
 using XenoGears.Assertions;
+using XenoGears.Logging;
 
 namespace Truesight.Playground.Parser
 {
@@ -22,7 +22,7 @@ namespace Truesight.Playground.Parser
                     {
                         case 2:
                             var y = (UInt32)4 + (UInt32)x;
-                            Trace.WriteLine(String.Empty + x + y);
+                            Log.WriteLine(String.Empty + x + y);
                             break;
 
                         case 4:
@@ -39,7 +39,7 @@ namespace Truesight.Playground.Parser
 
                         default:
                             var z = typeof(Type);
-                            Trace.WriteLine(z.ToString() + sizeof(Double));
+                            Log.WriteLine(z.ToString() + sizeof(Double));
                             throw new NotSupportedException();
                     }
                 }
@@ -74,7 +74,7 @@ namespace Truesight.Playground.Parser
                     var x = a + 10;
 
                     var y = (UInt32)4 + (UInt32)x;
-                    Trace.WriteLine(String.Empty + x + y);
+                    Log.WriteLine(String.Empty + x + y);
 
                     a = 15;
                     var arr = new Type[1];
@@ -85,7 +85,7 @@ namespace Truesight.Playground.Parser
                     var c = (UInt32)b < 2;
 
                     var z = typeof(Type);
-                    Trace.WriteLine(z.ToString() + sizeof(Double));
+                    Log.WriteLine(z.ToString() + sizeof(Double));
                     throw new NotSupportedException();
                 }
             }
@@ -147,7 +147,7 @@ namespace Truesight.Playground.Parser
             }
             finally
             {
-                Trace.WriteLine(local);
+                Log.WriteLine(local);
             }
         }
     }
