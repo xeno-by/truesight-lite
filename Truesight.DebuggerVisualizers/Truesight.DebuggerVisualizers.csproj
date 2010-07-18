@@ -61,11 +61,11 @@
     <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\XenoGears\XenoGears.DebuggerVisualizers\XenoGears.DebuggerVisualizers.csproj">
+    <ProjectReference Include="$(XENOGEARS)\XenoGears.DebuggerVisualizers\XenoGears.DebuggerVisualizers.csproj">
       <Project>{FD58DD07-21B1-47C8-8BD3-A733E2B62284}</Project>
       <Name>XenoGears.DebuggerVisualizers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XenoGears\XenoGears\XenoGears.csproj">
+    <ProjectReference Include="$(XENOGEARS)\XenoGears\XenoGears.csproj">
       <Project>{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}</Project>
       <Name>XenoGears</Name>
     </ProjectReference>

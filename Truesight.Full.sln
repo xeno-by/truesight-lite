@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Truesight.TextGenerators", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Truesight.DebuggerVisualizers", "Truesight.DebuggerVisualizers\Truesight.DebuggerVisualizers.csproj", "{F4776B6F-8979-4285-AE75-F219BE893B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears", "..\XenoGears\XenoGears\XenoGears.csproj", "{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears", "%XENOGEARS%\XenoGears\XenoGears.csproj", "{9435C2AB-D46A-481C-B485-BD74EFAE7D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears.DebuggerVisualizers", "..\XenoGears\XenoGears.DebuggerVisualizers\XenoGears.DebuggerVisualizers.csproj", "{FD58DD07-21B1-47C8-8BD3-A733E2B62284}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears.DebuggerVisualizers", "%XENOGEARS%\XenoGears.DebuggerVisualizers\XenoGears.DebuggerVisualizers.csproj", "{FD58DD07-21B1-47C8-8BD3-A733E2B62284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears.Playground", "..\XenoGears\XenoGears.Playground\XenoGears.Playground.csproj", "{7AE318A4-F8F5-4B18-B738-0E34B43C99D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenoGears.Playground", "%XENOGEARS%\XenoGears.Playground\XenoGears.Playground.csproj", "{7AE318A4-F8F5-4B18-B738-0E34B43C99D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
