@@ -2,11 +2,12 @@
 using Truesight.Playground.InAction.Domain;
 using Truesight.Playground.InAction.Kernels;
 using Truesight.Playground.InAction.Runtimes;
+using XenoGears.Playground.Framework;
 
 namespace Truesight.Playground.InAction
 {
     [TestFixture]
-    public partial class Tests
+    public partial class Tests : BaseTests
     {
         [Test, Category("Hot")]
         public void MatMulKernel()

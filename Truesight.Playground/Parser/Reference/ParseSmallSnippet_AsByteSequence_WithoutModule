@@ -39,7 +39,7 @@
 0x004a: cast val->ref Object
 0x004f: call <MetadataToken>
 0x0054: call <MetadataToken>
-0x0059: nop
+0x0059: pop
 0x005a: ldc int 15
 0x005c: starg 0
 0x005e: ldc int 1
@@ -74,7 +74,7 @@
 0x00a2: cast val->ref Object
 0x00a7: call <MetadataToken>
 0x00ac: call <MetadataToken>
-0x00b1: nop
+0x00b1: pop
 0x00b2: new <MetadataToken>
 0x00b7: throw
 0x00b8: new <MetadataToken>

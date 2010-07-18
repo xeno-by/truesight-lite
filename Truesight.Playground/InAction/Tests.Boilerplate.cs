@@ -49,10 +49,11 @@ namespace Truesight.Playground.InAction
             {
                 Log.WriteLine("*".Repeat(120));
                 Log.WriteLine("ERROR! Calculated matrix ain't equal to reference result.");
-                Log.WriteLine();
 
+                Log.EnsureBlankLine();
                 PrintMatrix("Expected: ", a);
-                Log.WriteLine();
+
+                Log.EnsureBlankLine();
                 PrintMatrix("Actual: ", b);
                 throw AssertionHelper.Fail();
             }
