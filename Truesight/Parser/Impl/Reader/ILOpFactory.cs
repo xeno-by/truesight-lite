@@ -154,6 +154,8 @@ namespace Truesight.Parser.Impl.Reader
                     return new Ldind(body, reader, prefixes);
                 case 0x71: // ldobj
                     return new Ldind(body, reader, prefixes);
+                case 0xfe15: // initobj
+                    return new Initobj(body, reader, prefixes);
                 case 0x0a: // stloc.0
                     return new Stloc(body, reader, prefixes);
                 case 0x0b: // stloc.1
@@ -450,8 +452,6 @@ namespace Truesight.Parser.Impl.Reader
                     return new New(body, reader, prefixes);
                 case 0x8d: // newarr
                     return new New(body, reader, prefixes);
-                case 0xfe15: // initobj
-                    return new Initobj(body, reader, prefixes);
                 default: 
                     throw new NotSupportedException(String.Format("Opcode \"0x{0:x4}\" is not supported", opcode.Value));
             }
