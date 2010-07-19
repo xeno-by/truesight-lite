@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using XenoGears.Strings;
 
 namespace Truesight.Decompiler.Hir.Prettyprint
 {

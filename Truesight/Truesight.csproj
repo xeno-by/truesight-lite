@@ -146,8 +146,6 @@
     <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Multiliners.cs" />
     <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprinter.Oneliners.cs" />
     <Compile Include="Decompiler\Hir\Prettyprint\CSharpPrettyprintWriter.cs" />
-    <Compile Include="Decompiler\Hir\Prettyprint\IndentedTextWriter.cs" />
-    <Compile Include="Decompiler\Hir\Prettyprint\IndentedTextWriterFactory.cs" />
     <Compile Include="Decompiler\Hir\Traversal\Exceptions\ExceptionThrower.cs" />
     <Compile Include="Decompiler\Hir\Traversal\Exceptions\HirTraversalException.cs" />
     <Compile Include="Decompiler\Hir\Traversal\Exceptions\UnexpectedNodeException.cs" />

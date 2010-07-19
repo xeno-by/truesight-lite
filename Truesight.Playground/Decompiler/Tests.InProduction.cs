@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using Truesight.Decompiler.Hir.Prettyprint;
 using XenoGears.Assertions;
 using XenoGears.Reflection.Generics;
 using XenoGears.Reflection.Shortcuts;
+using XenoGears.Strings;
 
 namespace Truesight.Playground.Decompiler
 {
