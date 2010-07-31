@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
-using XenoGears.Collections;
+using XenoGears.Collections.Dictionaries;
 
 namespace Truesight.Parser.Api.DebugInfo
 {

@@ -9,6 +9,7 @@ using Truesight.Decompiler.Pipeline.Hir;
 using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Strings;
+using XenoGears.Strings.Writers;
 using XenoGears.Traits.Hierarchy;
 using Truesight.Decompiler.Pipeline.Cil;
 
@@ -20,7 +21,7 @@ namespace Truesight.Decompiler.Hir.Prettyprint
 
         protected internal override void TraverseBlock(Block block)
         {
-            var prefixes = block.ToDictionary(s => s, s => new List<Action<IndentedTextWriter>>());
+            var prefixes = block.ToDictionary(s => s, s => new List<Action<IndentedWriter>>());
             var evalOrder = block.CSharpEvaluationOrder();
             var allRefs = evalOrder.OfType<Ref>().Where(
                 @ref => @ref.Sym != null && @ref.Sym.IsLocal()).ToReadOnly();

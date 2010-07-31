@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using XenoGears.Assertions;
 using XenoGears.Reflection.Generics;
 using XenoGears.Reflection.Shortcuts;
 using XenoGears.Strings;
+using XenoGears.Strings.Writers;
 
 namespace Truesight.Playground.Decompiler
 {
@@ -90,14 +92,14 @@ namespace Truesight.Playground.Decompiler
         [Test]
         public void DecompileCtor_This()
         {
-            var itw_notab = typeof(IndentedTextWriter).GetConstructors(BF.All).Single(ctor => ctor.Paramc() == 1);
+            var itw_notab = typeof(IndentedWriter).GetConstructors(BF.All).Single(ctor => ctor.Paramc() == 1 && ctor.Params().First() == typeof(TextWriter));
             TestMethodDecompilation(itw_notab);
         }
 
         [Test]
         public void DecompileCtor_Base()
         {
-            var itw_tab = typeof(IndentedTextWriter).GetConstructors(BF.All).Single(ctor => ctor.Paramc() == 2);
+            var itw_tab = typeof(IndentedWriter).GetConstructors(BF.All).Single(ctor => ctor.Paramc() == 2 && ctor.Params().First() == typeof(TextWriter));
             TestMethodDecompilation(itw_tab);
         }
 

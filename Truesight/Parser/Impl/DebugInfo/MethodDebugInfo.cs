@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Reflection;
+using XenoGears.Collections.Dictionaries;
 using XenoGears.Functional;
 using XenoGears.Collections;
 using Truesight.Parser.Api;

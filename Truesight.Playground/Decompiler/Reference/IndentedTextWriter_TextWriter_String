@@ -1,8 +1,0 @@
-﻿IndentedTextWriter..ctor :: IndentedTextWriter this -> TextWriter writer -> String tabString -> void
-{
-    ctor(CultureInfo.InvariantCulture);
-    this.writer = writer;
-    this.tabString = tabString;
-    this.indentLevel = 0;
-    this.tabsPending = true;
-}

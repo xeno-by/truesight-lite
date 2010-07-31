@@ -3,6 +3,7 @@ using Truesight.Decompiler.Pipeline.Attrs;
 using Truesight.Decompiler.Pipeline.Flow.Cfg;
 using XenoGears.Collections;
 using Truesight.Parser.Api;
+using XenoGears.Collections.Dictionaries;
 
 namespace Truesight.Decompiler.Pipeline.Cil
 {

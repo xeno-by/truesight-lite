@@ -1,0 +1,7 @@
+﻿IndentedWriter..ctor :: IndentedWriter this -> TextWriter writer -> String tabString -> void
+{
+    ctor(writer);
+    this.Indent = 0;
+    this.TabString = tabString;
+    this.TabsPending = true;
+}

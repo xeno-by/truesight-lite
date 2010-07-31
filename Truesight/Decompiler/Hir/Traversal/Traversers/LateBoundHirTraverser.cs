@@ -8,6 +8,7 @@ using Truesight.Decompiler.Hir.Core.Expressions;
 using Truesight.Decompiler.Hir.Core.Functional;
 using Truesight.Decompiler.Hir.Core.Special;
 using Truesight.Decompiler.Hir.Traversal.Exceptions;
+using XenoGears.Collections.Dictionaries;
 using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Collections;

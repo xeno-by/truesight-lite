@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using XenoGears.Collections.Dictionaries;
 using XenoGears.Functional;
-using XenoGears.Collections;
 
 namespace Truesight.Decompiler.Hir.TypeInference
 {

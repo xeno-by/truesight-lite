@@ -10,6 +10,7 @@ using Truesight.Parser;
 using Truesight.Parser.Api;
 using Truesight.Parser.Api.Emit;
 using Truesight.Parser.Api.Ops;
+using XenoGears.Collections.Dictionaries;
 using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Collections;

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Truesight.Decompiler.Hir.Core.ControlFlow;
 using Truesight.Decompiler.Hir.Core.Expressions;
+using XenoGears.Collections.Dictionaries;
 using XenoGears.Functional;
 using XenoGears.Collections;
 using XenoGears.Assertions;

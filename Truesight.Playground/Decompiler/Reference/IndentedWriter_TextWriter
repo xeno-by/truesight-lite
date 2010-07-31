@@ -1,0 +1,4 @@
+﻿IndentedWriter..ctor :: IndentedWriter this -> TextWriter writer -> void
+{
+    ctor(writer, "    ");
+}

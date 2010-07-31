@@ -11,7 +11,7 @@ using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
 using XenoGears.Functional;
 using XenoGears.Assertions;
-using XenoGears.Collections;
+using XenoGears.Collections.Dictionaries;
 using QuickGraph.Algorithms;
 using XenoGears.Traits.Dumpable;
 
