@@ -39,6 +39,12 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
         int IImmutableHierarchy2<Scope>.Index { get { return ((IImmutableHierarchy2<Scope>)this).Parent == null ? -1 : ((IImmutableHierarchy2<Scope>)this).Parent.Children.IndexOf(this); } }
         Scope IImmutableHierarchy2<Scope>.Prev { get { return ((IImmutableHierarchy2<Scope>)this).Parent == null ? null : (((IImmutableHierarchy2<Scope>)this).Index == 0 ? null : ((IImmutableHierarchy2<Scope>)this).Parent.Children[Index - 1]); } }
         Scope IImmutableHierarchy2<Scope>.Next { get { return ((IImmutableHierarchy2<Scope>)this).Parent == null ? null : (((IImmutableHierarchy2<Scope>)this).Index == ((IImmutableHierarchy2<Scope>)this).Parent.Children.Count() - 1 ? null : ((IImmutableHierarchy2<Scope>)this).Parent.Children[Index + 1]); } }
+
+        Scope Scope.Parent { get { return ((IImmutableHierarchy2<Scope>)this).Parent; } }
+        ReadOnlyCollection<Scope> Scope.Children { get { return ((IImmutableHierarchy2<Scope>)this).Children; } }
+        Scope Scope.Prev { get { return ((IImmutableHierarchy2<Scope>)this).Prev; ; } }
+        Scope Scope.Next { get { return ((IImmutableHierarchy2<Scope>)this).Next; ; } }
+
         IImmutableHierarchy2 IImmutableHierarchy2.Parent { get { return ((IImmutableHierarchy2<Scope>)this).Parent; } }
         ReadOnlyCollection<IImmutableHierarchy2> IImmutableHierarchy2.Children { get { return ((IImmutableHierarchy2<Scope>)this).Children.Cast<IImmutableHierarchy2>().ToReadOnly(); } }
         IImmutableHierarchy2 IImmutableHierarchy2.Prev { get { return ((IImmutableHierarchy2<Scope>)this).Prev; } }

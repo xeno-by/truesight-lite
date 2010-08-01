@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -7,7 +6,6 @@ using System.Reflection;
 using Truesight.Decompiler.Hir.Core.ControlFlow;
 using Truesight.Decompiler.Hir.Core.Expressions;
 using Truesight.Decompiler.Hir.Core.Functional;
-using XenoGears.Collections;
 using XenoGears.Functional;
 using XenoGears.Traits.Hierarchy;
 using XenoGears.Assertions;

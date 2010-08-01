@@ -68,6 +68,8 @@
     <Compile Include="Decompiler\Framework\Impl\Slot.cs" />
     <Compile Include="Decompiler\Framework\Impl\SlotHelpers.cs" />
     <Compile Include="Decompiler\Framework\PipelineFramework.cs" />
+    <Compile Include="Decompiler\Hir\Core\Scopes\Scope.Internalizable.cs" />
+    <Compile Include="Decompiler\Hir\Node.Hierarchy.Internalizable.cs" />
     <Compile Include="Decompiler\Hir\Core\ControlFlow\Block.cs" />
     <Compile Include="Decompiler\Hir\Core\ControlFlow\Break.cs" />
     <Compile Include="Decompiler\Hir\Core\ControlFlow\Catch.cs" />

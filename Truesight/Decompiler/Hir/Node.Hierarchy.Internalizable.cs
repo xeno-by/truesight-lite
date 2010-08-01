@@ -1,7 +1,7 @@
 ﻿using System;
 using XenoGears.Collections.Observable;
 
-// note. this file is necessary in order to expose XenoGears' API to outer world
+// note. this boilerplate is necessary in order to expose XenoGears' API to outer world
 // the problem is that when we ilmerge and internalize XenoGears
 // then all of a sudden a bunch of APIs become unavailable to our users
 

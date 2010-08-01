@@ -8,7 +8,7 @@ using XenoGears.Traits.Hierarchy;
 namespace Truesight.Decompiler.Hir.Core.Scopes
 {
     [DebuggerNonUserCode]
-    public static class ScopeExtensions
+    public static partial class ScopeExtensions
     {
         public static ReadOnlyCollection<Local> LocalsRecursive(this Scope scope)
         {
