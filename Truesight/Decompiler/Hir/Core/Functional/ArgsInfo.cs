@@ -112,7 +112,7 @@ namespace Truesight.Decompiler.Hir.Core.Functional
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
-        protected internal class ArgsInfoDebugView
+        internal class ArgsInfoDebugView
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly ArgsInfo _obj;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly String _name;

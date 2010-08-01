@@ -111,7 +111,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
-        protected internal class LoopDebugView : INodeDebugView
+        internal class LoopDebugView : INodeDebugView
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Loop _node;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Object _parentProxy;
@@ -159,7 +159,7 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
-        protected internal class LoopDebugView_NoParent : INodeDebugView
+        internal class LoopDebugView_NoParent : INodeDebugView
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Loop _node;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Object _parentProxy;

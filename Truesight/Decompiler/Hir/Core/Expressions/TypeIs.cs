@@ -70,7 +70,7 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
-        protected internal class TypeIsDebugView : INodeDebugView
+        internal class TypeIsDebugView : INodeDebugView
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly TypeIs _node;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Object _parentProxy;
@@ -97,7 +97,7 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
 
         [DebuggerDisplay("{ToString(), nq}{\"\", nq}", Name = "{_name, nq}{\"\", nq}")]
         [DebuggerNonUserCode]
-        protected internal class TypeIsDebugView_NoParent : INodeDebugView
+        internal class TypeIsDebugView_NoParent : INodeDebugView
         {
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly TypeIs _node;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)] private readonly Object _parentProxy;

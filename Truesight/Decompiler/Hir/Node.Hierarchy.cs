@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using XenoGears.Assertions;
 using XenoGears.Collections.Observable;
 using XenoGears.Traits.Hierarchy;
@@ -7,6 +8,7 @@ namespace Truesight.Decompiler.Hir
 {
     public abstract partial class Node : Hierarchy<Node>
     {
+
         // note. changing child's parent is a great failboat
         // since it automatically implies removing the child from parent's Children collection
         // which contradicts to almost all AST nodes' assumption that # of children never changes
