@@ -94,8 +94,8 @@ namespace Truesight.Decompiler.Hir.TypeInference
                                 ((Func<int>)(() => { throw AssertionHelper.Fail(); }))();
                             Func<Type, bool> signed = t => 
                                 t == typeof(sbyte) || t == typeof(short) ||
-                                t == typeof(byte) || t == typeof(ushort) ? true :
-                                t == typeof(int) || t == typeof(long) ||
+                                t == typeof(int) || t == typeof(long) ? true :
+                                t == typeof(byte) || t == typeof(ushort) ||
                                 t == typeof(uint) || t == typeof(ulong) ? false :
                                 ((Func<bool>)(() => { throw AssertionHelper.Fail(); }))();
                             Func<int, bool, Type> mk_int = (n_bits, is_signed) =>
@@ -107,12 +107,16 @@ namespace Truesight.Decompiler.Hir.TypeInference
                                 throw AssertionHelper.Fail();
                             };
 
-                            var bits = Math.Max(bitness(t_lhs), bitness(t_rhs));
-                            var sign = bitness(t_lhs) > bitness(t_rhs) ? signed(t_lhs) :
-                                bitness(t_lhs) > bitness(t_rhs) ? signed(t_lhs) : 
-                                signed(t_lhs) || signed(t_rhs);
+                            // todo. the rules below are specific to C#
+                            Func<Type, Type, bool> has_cast_to = (wb, t) => wb == t || bitness(wb) < bitness(t);
+                            Func<Type, Type, bool> args_match = (t1, t2) => has_cast_to(t_lhs, t1) && has_cast_to(t_rhs, t2);
+                            Type t_result = null;
+                            if (args_match(typeof(int), typeof(int))) t_result = typeof(int);
+                            if (args_match(typeof(uint), typeof(uint))) t_result = typeof(uint);
+                            if (args_match(typeof(long), typeof(long))) t_result = typeof(long);
+                            if (args_match(typeof(ulong), typeof(ulong))) t_result = typeof(ulong);
+                            t_result.AssertNotNull();
 
-                            var t_result = mk_int(bits, sign);
                             Types.Add(op, t_result);
                         }
                         else
