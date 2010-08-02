@@ -155,6 +155,7 @@
     <EmbeddedResource Include="Parser\Reference\ParseSnippetWithGuards" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdHoc\Tests.cs" />
     <Compile Include="InAction\Domain\Grid.cs" />
     <Compile Include="InAction\Domain\Kernel.cs" />
     <Compile Include="InAction\Kernels\MatMulKernel.cs" />

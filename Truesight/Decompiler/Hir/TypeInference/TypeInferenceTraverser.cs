@@ -112,10 +112,10 @@ namespace Truesight.Decompiler.Hir.TypeInference
                             Func<Type, Type, bool> args_match = (t1, t2) => has_cast_to(t_lhs, t1) && has_cast_to(t_rhs, t2);
                             Type t_result = null;
                             if (args_match(typeof(int), typeof(int))) t_result = typeof(int);
-                            if (args_match(typeof(uint), typeof(uint))) t_result = typeof(uint);
-                            if (args_match(typeof(long), typeof(long))) t_result = typeof(long);
-                            if (args_match(typeof(ulong), typeof(ulong))) t_result = typeof(ulong);
-                            t_result.AssertNotNull();
+                            else if (args_match(typeof(uint), typeof(uint))) t_result = typeof(uint);
+                            else if (args_match(typeof(long), typeof(long))) t_result = typeof(long);
+                            else if (args_match(typeof(ulong), typeof(ulong))) t_result = typeof(ulong);
+                            else t_result.AssertNotNull();
 
                             Types.Add(op, t_result);
                         }
