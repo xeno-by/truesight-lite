@@ -51,6 +51,27 @@ namespace Truesight.Decompiler.Hir
 
                 if (this is Block)
                 {
+                    var if_true = this.Parent is If && ((If)this.Parent).IfTrue == this;
+                    if (if_true) head = "if-true";
+
+                    var if_false = this.Parent is If && ((If)this.Parent).IfFalse == this;
+                    if (if_false) head = "if-false";
+
+                    var loop_init = this.Parent is Loop && ((Loop)this.Parent).Init == this;
+                    if (loop_init) head = "loop-init";
+
+                    var loop_iter = this.Parent is Loop && ((Loop)this.Parent).Iter == this;
+                    if (loop_iter) head = "loop-iter";
+
+                    var loop_body = this.Parent is Loop && ((Loop)this.Parent).Body == this;
+                    if (loop_body) head = "loop-body";
+
+                    var iter_body = this.Parent is Iter && ((Iter)this.Parent).Body == this;
+                    if (iter_body) head = "iter-body";
+
+                    var using_body = this.Parent is Using && ((Using)this.Parent).Body == this;
+                    if (using_body) head = "using-body";
+
                     var block = (Block)this;
                     head += String.Format(" ({0})", block.Count());
                 }
