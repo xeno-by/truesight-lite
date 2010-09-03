@@ -14,13 +14,13 @@ using XenoGears.Versioning;
 
 [assembly: ComVisible(false)]
 [assembly: DecompilerCodebase]
-[assembly: InternalsVisibleTo("Truesight.DebuggerVisualizers")]
-[assembly: InternalsVisibleTo("Truesight.Playground")]
-[assembly: InternalsVisibleTo("Truesight.TextGenerators")]
-[assembly: InternalsVisibleTo("Truesight.Decompiler.Pipeline")]
+[assembly: InternalsVisibleTo("Truesight.DebuggerVisualizers, PublicKey=0024000004800000940000000602000000240000525341310004000001000100d56685f59d3d8ffcbf1b8465163b7393408f16cdf2b011bb5f527b06fd8d7435940abbd926e5dfcc1325de17b710f7385243ca610b3c65e6825d3c9823ecc579bd82c911b73ff94513e014d8c55d9de0c657445bc2388ea3d283a055f53c17485f8f7bf8dbd132e32ed741693c3f53613c6f811298aa067fc0643b5644dfecac")]
+[assembly: InternalsVisibleTo("Truesight.Playground, PublicKey=0024000004800000940000000602000000240000525341310004000001000100cfedc892771f937a57c370ef81c64756d78c9860f7b35bb15a8af52042e01677ed198b431da4d8cd3987cbec809271e809dd5315ed25d57f7230f415866d17a214013522e549810bd58407e92bc74928528fa3a5e057a6cb4a7ae0523d3de862dafc69a4756af56f979e22d2f7e6251c826058cf4c4c97863fe1a96ed802d6ca")]
+[assembly: InternalsVisibleTo("Truesight.TextGenerators, PublicKey=0024000004800000940000000602000000240000525341310004000001000100154dd7f413a1f90468f73d39073a96c08c569e48521f07d2ea327ca972c82390923a8e8097fbf08eaf9e292e027d4d307b280f9054ab465afe1aa95cb230b25a79ed696be45b9641ce654fad5655782f2f1437062752b5aa4780021376b5a84e01eaa2e8398f0cc62a365ba1d412bd980b90a9a6346be736a0df860f19f09d99")]
+//[assembly: InternalsVisibleTo("Truesight.Decompiler.Pipeline")]
 
 [assembly: Guid("5f2fcd01-9556-4a8b-ba3a-811699e4b988")]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyBuiltFrom(Repository = "$"CODEBASE"$", Revision = "$REVISION$", CodebaseHash = "$CODEHASH$")]
 [assembly: AssemblyBuiltAt(Timestamp = "$TIMESTAMP$")]
 [assembly: AssemblyBuiltBy(UserHash = "$USERHASH$")]
