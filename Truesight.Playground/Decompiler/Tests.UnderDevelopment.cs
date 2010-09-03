@@ -6,6 +6,12 @@ namespace Truesight.Playground.Decompiler
     [TestFixture, Category("Under Development")]
     public class UnderDevelopment : Tests
     {
+        [Test]
+        public void Operators2()
+        {
+            TestMethodDecompilation(typeof(Snippets).GetMethod("Operators2", BF.All));
+        }
+
         [Test, Category("Hot")]
         public void ComplexConditions1()
         {

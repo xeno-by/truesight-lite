@@ -12,7 +12,7 @@ using XenoGears.Versioning;
 [assembly: AssemblyCopyright("Copyright © 2009-2010 xeno.by")]
 
 [assembly: ComVisible(false)]
-// [assembly: InternalsVisibleTo("Truesight.Playground.InAction.Runtime")]
+[assembly: InternalsVisibleTo("Truesight.Playground.InAction.Runtime, PublicKey=0024000004800000940000000602000000240000525341310004000001000100cfedc892771f937a57c370ef81c64756d78c9860f7b35bb15a8af52042e01677ed198b431da4d8cd3987cbec809271e809dd5315ed25d57f7230f415866d17a214013522e549810bd58407e92bc74928528fa3a5e057a6cb4a7ae0523d3de862dafc69a4756af56f979e22d2f7e6251c826058cf4c4c97863fe1a96ed802d6ca")]
 
 [assembly: Guid("a4d4c030-6efa-4af9-830b-e6fb86e70dcc")]
 [assembly: AssemblyVersion("0.0.0.0")]

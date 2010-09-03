@@ -210,7 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AssemblyInfo.template" />
-    <None Include="Truesight.Playground.snk" />
+    <EmbeddedResource Include="Truesight.Playground.snk" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Decompiler\Reference\StructOpAss" />

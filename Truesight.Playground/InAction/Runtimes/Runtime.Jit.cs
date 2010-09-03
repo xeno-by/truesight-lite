@@ -7,6 +7,7 @@ using XenoGears.Reflection.Generics;
 using XenoGears.Reflection.Shortcuts;
 using XenoGears.Reflection.Emit;
 using XenoGears.Reflection.Emit.Hackarounds;
+using XenoGears;
 
 namespace Truesight.Playground.InAction.Runtimes
 {
@@ -15,7 +16,8 @@ namespace Truesight.Playground.InAction.Runtimes
         private IKernel<T1, T2, T3> Jit(Type t_kernel)
         {
             var unit_name = "Truesight.Playground.InAction.Runtime";
-            var unit = XenoGears.Reflection.Emit2.Codegen.Units[unit_name];
+            var unit_key = typeof(TestRunner).Assembly.ReadKey("Truesight.Playground.Truesight.Playground.snk");
+            var unit = XenoGears.Reflection.Emit2.Codegen.Units[unit_name, unit_key];
             return unit.Context.GetOrCreate(t_kernel, () =>
             {
                 // Constructor

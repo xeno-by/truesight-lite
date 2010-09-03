@@ -19,12 +19,6 @@ namespace Truesight.Playground.Decompiler
         }
 
         [Test]
-        public void Operators2()
-        {
-            TestMethodDecompilation(typeof(Snippets).GetMethod("Operators2", BF.All));
-        }
-
-        [Test]
         public void ExoticOperators1()
         {
             TestMethodDecompilation(typeof(Snippets).GetMethod("ExoticOperators1", BF.All));
