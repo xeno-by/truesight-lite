@@ -1,4 +1,4 @@
-﻿Snippets.PreAndPost_WithPropsAndIndexers :: A a -> int b -> int
+﻿Snippets.PreAndPost_WithPropsAndIndexers :: Snippets.A a -> int b -> int
 {
     if (++a.prop * (a.prop += 2) > --b * a[b]++)
     {

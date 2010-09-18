@@ -1,6 +1,6 @@
 ﻿Snippets.StructCtors :: () -> bool
 {
-    var def = default(S);
-    var ctor = new S(10);
-    return def.x + new S(9).x < default(S).x + ctor.x;
+    var def = default(Snippets.S);
+    var ctor = new Snippets.S(10);
+    return def.x + new Snippets.S(9).x < default(Snippets.S).x + ctor.x;
 }

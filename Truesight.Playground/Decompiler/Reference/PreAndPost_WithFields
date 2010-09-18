@@ -1,4 +1,4 @@
-﻿Snippets.PreAndPost_WithFields :: int a -> B b -> int
+﻿Snippets.PreAndPost_WithFields :: int a -> Snippets.B b -> int
 {
     if (++a * (b.f += 2) > --b.f * a++)
     {

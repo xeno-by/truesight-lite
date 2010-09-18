@@ -1,4 +1,4 @@
-﻿Snippets.ExoticOperators2 :: double a -> P p -> void
+﻿Snippets.ExoticOperators2 :: double a -> Snippets.P p -> void
 {
     p.InnerC().f += (p.InnerC().p /= p.InnerC()[(int)++a]++);
 }

@@ -433,7 +433,9 @@ namespace Truesight.Playground.Parser.ILRewriter
                 }
             }
 
-            return result.AssertNotNull().Item2.Offset; 
+            // todo. fixme!
+            // consult previous revisions of this file
+            return result.AssertNotNull().Item2.Offset;
         }
 
         #endregion

@@ -1,4 +1,4 @@
 ﻿Snippets.TypeIs :: Object o -> bool
 {
-    return o is Type || o is SDynamic;
+    return o is Type || o is Snippets.SDynamic;
 }

@@ -3,6 +3,6 @@
     var i32_def = 0;
     var t_def = default(T);
     var f64_def = 0;
-    var s_def = default(S);
+    var s_def = default(Snippets.S);
     return t_def.GetType().Name.Length > i32_def + (int)f64_def + s_def.x;
 }

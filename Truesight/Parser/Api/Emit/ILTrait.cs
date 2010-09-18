@@ -6,7 +6,7 @@ using Truesight.Parser.Api.Ops;
 using XenoGears.Functional;
 using XenoGears.Assertions;
 using XenoGears.Reflection.Emit;
-using XenoGears.Reflection.Emit.Hackarounds;
+using XenoGears.Reflection.Shortcuts;
 using XenoGears.Reflection.Simple;
 
 namespace Truesight.Parser.Api.Emit
@@ -120,12 +120,9 @@ namespace Truesight.Parser.Api.Emit
                         // since it returns index of an entry in the MemberRef metadata table (0x0a)
                         // closed generic methods are stored a separate metadata table (MethodSpec, 0x2b)
 
-                        // note 2. Neither will work ILGenerator::GetMethodToken
-                        // since it uses System.Reflection.Emit.SignatureHelper that has a bug
-                        // for more details see: http://xeno-by.livejournal.com/14460.html
-
                         var method = (ldc_member ?? op.GetOrDefault("Method") ?? op.GetOrDefault("Ctor") ?? op.GetOrDefault("Resolved")).AssertCast<MethodBase>();
-                        newToken = il.GetMethodToken_Hackaround(method);
+                        var getMethodToken = typeof(ILGenerator).GetMethod("GetMethodToken", BF.PrivateInstance);
+                        newToken = (int)getMethodToken.Invoke(il, new Object[] { method, null, false });
                         operand = BitConverter.GetBytes(newToken);
                         break;
 

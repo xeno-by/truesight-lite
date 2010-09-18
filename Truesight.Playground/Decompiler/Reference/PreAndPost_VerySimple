@@ -1,4 +1,4 @@
-﻿Snippets.PreAndPost_VerySimple :: B a -> B b -> int
+﻿Snippets.PreAndPost_VerySimple :: Snippets.B a -> Snippets.B b -> int
 {
     if (++a.f > b.f++)
     {

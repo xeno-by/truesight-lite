@@ -1,5 +1,5 @@
-﻿Snippets.StructOpAss :: S p -> void
+﻿Snippets.StructOpAss :: Snippets.S p -> void
 {
-    var l = default(S);
+    var l = default(Snippets.S);
     p.x += l.x += 2;
 }
