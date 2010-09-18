@@ -222,7 +222,7 @@ namespace Truesight.TextGenerators.Parser.KnowledgeBase
                 buffer1.AppendLine("{".Indent().Indent());
                 buffer1.AppendLine("var relative = ReadI4(reader);".Indent().Indent().Indent());
                 buffer1.AppendLine("var absolute = pivot + relative;".Indent().Indent().Indent());
-                buffer1.AppendLine(String.Format("return {0}.New(relative, absolute);",
+                buffer1.AppendLine(String.Format("return {0}.Create(relative, absolute);",
                     typeof(Tuple).GetCSharpRef(ToCSharpOptions.ForCodegen)).Indent().Indent().Indent());
                 buffer1.AppendLine("}));".Indent().Indent());
                 buffer1.Append("}))()");
