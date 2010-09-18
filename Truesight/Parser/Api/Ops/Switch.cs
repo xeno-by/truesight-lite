@@ -40,7 +40,7 @@ namespace Truesight.Parser.Api.Ops
                     {
                         var relative = ReadI4(reader);
                         var absolute = pivot + relative;
-                        return global::System.Tuple.New(relative, absolute);
+                        return global::System.Tuple.Create(relative, absolute);
                     }));
             }))();
 

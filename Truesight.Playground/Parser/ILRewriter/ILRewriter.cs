@@ -152,11 +152,11 @@ namespace Truesight.Playground.Parser.ILRewriter
                             // fixup = translate from after-stage-1 to after-stage-2 coordinates
                             foreach (var entry in _offsetsModeChangeLog)
                             {
-                                (rop1.Offset < entry.Item2 && entry.Item2 < rop1.OffsetOfNextOp).AssertFalse();
+                                (rop1.Offset < entry.Offset && entry.Offset < rop1.OffsetOfNextOp).AssertFalse();
 
                                 var entry1 = entry;
-                                var fixup = rop1.Offset >= entry1.Item2 ? 0 : 3;
-                                fixupUpdates.Add(() => entry1.Item2 += fixup);
+                                var fixup = rop1.Offset >= entry1.Offset ? 0 : 3;
+                                fixupUpdates.Add(() => entry1.Offset += fixup);
                             }
                         }
                         else
@@ -291,17 +291,26 @@ namespace Truesight.Playground.Parser.ILRewriter
         public void EnterOriginalOffsetsMode() { OffsetsMode = OffsetsMode.Original;  }
         public void EnterRewrittenOffsetsMode() { OffsetsMode = OffsetsMode.Rewritten; }
 
-        private List<MutableTuple<OffsetsMode, int>> _offsetsModeChangeLog = new List<MutableTuple<OffsetsMode, int>>();
+        private class ModeOffset { public OffsetsMode Mode { get; set; } public int Offset { get; set; } public ModeOffset(OffsetsMode mode, int offset) { Mode = mode; Offset = offset; } }
+        private List<ModeOffset> _offsetsModeChangeLog = new List<ModeOffset>();
         private OffsetsMode GetOffsetsMode(int rewrittenOffset)
         {
-            var section = _offsetsModeChangeLog.SlideOuter2().First(pair =>
+            ModeOffset result = null;
+            for (var i = -1; i < _offsetsModeChangeLog.Count() + 1; ++i)
             {
-                var offset1 = pair.Item1 != null ? pair.Item1.Item2 : int.MinValue;
-                var offset2 = pair.Item2 != null ? pair.Item2.Item2 : int.MaxValue;
-                return offset1 <= rewrittenOffset && rewrittenOffset < offset2;
-            });
+                var item1 = (0 <= i && i < _offsetsModeChangeLog.Count()) ? _offsetsModeChangeLog[i] : null;
+                var item2 = (0 <= (i + 1) && (i + 1) < _offsetsModeChangeLog.Count()) ? _offsetsModeChangeLog[i + 1] : null;
 
-            return section.Item1.AssertNotNull().Item1;
+                var offset1 = item1 != null ? item1.Offset : int.MinValue;
+                var offset2 = item2 != null ? item2.Offset : int.MaxValue;
+                if (offset1 <= rewrittenOffset && rewrittenOffset < offset2)
+                {
+                    result = item1;
+                    continue;
+                }
+            }
+
+            return result.AssertNotNull().Mode;
         }
 
         public OffsetsMode OffsetsMode
@@ -312,7 +321,7 @@ namespace Truesight.Playground.Parser.ILRewriter
                 _offsetsMode = value;
 
                 var length = _il.Get("m_length").AssertCast<int>();
-                _offsetsModeChangeLog.Add(MutableTuple.New(value, length));
+                _offsetsModeChangeLog.Add(new ModeOffset(value, length));
             }
         }
 
@@ -374,7 +383,7 @@ namespace Truesight.Playground.Parser.ILRewriter
                 (
                     0,
                     (acc, kvp, _) => acc + kvp.Value,
-                    (acc, kvp, _) => Tuple.New(acc + kvp.Key.Offset, kvp.Key)
+                    (acc, kvp, _) => Tuple.Create(acc + kvp.Key.Offset, kvp.Key)
                 ).ToReadOnly();
             }
         }
@@ -409,15 +418,22 @@ namespace Truesight.Playground.Parser.ILRewriter
         {
             if (rewrittenOffset == _rewrittenIL.Length) return _originalIL.Length;
 
-            var pair_preImage = _appliedFixups.SlideOuter2().First(pair =>
+            Tuple<int, IILOp> result = null;
+            for (var i = -1; i < _appliedFixups.Count() + 1; ++i)
             {
-                var offset1 = pair.Item1 != null ? pair.Item1.Item1 : int.MinValue;
-                var offset2 = pair.Item2 != null ? pair.Item2.Item1 : int.MaxValue;
-                return offset1 <= rewrittenOffset && rewrittenOffset < offset2;
-            });
+                var item1 = (0 <= i && i < _appliedFixups.Count()) ? _appliedFixups[i] : null;
+                var item2 = (0 <= (i + 1) && (i + 1) < _appliedFixups.Count()) ? _appliedFixups[i + 1] : null;
 
-            var preImage = pair_preImage.Item1.AssertNotNull().Item2;
-            return preImage.Offset;
+                var offset1 = item1 != null ? item1.Item1 : int.MinValue;
+                var offset2 = item2 != null ? item2.Item1 : int.MaxValue;
+                if (offset1 <= rewrittenOffset && rewrittenOffset < offset2)
+                {
+                    result = item1;
+                    continue;
+                }
+            }
+
+            return result.AssertNotNull().Item2.Offset; 
         }
 
         #endregion

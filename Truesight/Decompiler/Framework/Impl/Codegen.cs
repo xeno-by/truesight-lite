@@ -26,7 +26,7 @@ namespace Truesight.Decompiler.Framework.Impl
 
         public static Func<T, T> CompilePipeline<T>(this Pipeline pipeline)
         {
-            var uncurried = (Func<Pipeline, T, T>)_cache.GetOrDefault(Tuple.New(pipeline.Metadata, typeof(T)), () =>
+            var uncurried = (Func<Pipeline, T, T>)_cache.GetOrDefault(Tuple.Create(pipeline.Metadata, typeof(T)), () =>
             {
                 var asm = XenoGears.Reflection.Emit2.Codegen.Units["Truesight.Decompiler.Pipeline"];
 //                var typeName = "\"" + pipeline.Metadata.Name + "\"";

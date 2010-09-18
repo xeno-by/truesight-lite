@@ -58,19 +58,14 @@ namespace Truesight.Parser.Impl.DebugInfo
                 // todo. support 0xfeefee semantics here
                 // see http://blogs.msdn.com/jmstall/archive/2005/06/19/FeeFee_SequencePoints.aspx
 
-                if (ilOffset < 0 || Body.Last().OffsetOfNextOp <= ilOffset)
+                for (var i = 0; i < SequencePoints.Count(); ++i)
                 {
-                    return null;
+                    var from = SequencePoints[i].ILOffset;
+                    var to = i == SequencePoints.Count() - 1 ? int.MaxValue : SequencePoints[i + 1].ILOffset;
+                    if (from <= ilOffset && ilOffset < to) return SequencePoints[i].TextRun;
                 }
-                else
-                {
-                    return SequencePoints.SlideOuter2().Skip(1).First(pair =>
-                    {
-                        var start1 = pair.Item1 == null ? int.MinValue : pair.Item1.ILOffset;
-                        var start2 = pair.Item2 == null ? int.MinValue : pair.Item2.ILOffset;
-                        return start1 <= ilOffset && ilOffset < start2;
-                    }).Item1.TextRun;
-                }
+
+                return null;
             }
         }
     }
