@@ -56,11 +56,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
 
                 var visited = new Iter(seq, body);
                 visited.Locals.SetElements(Locals.Select(loc => loc.DeepClone()));
-                return visited;
+                return visited.HasProto(this);
             }
             else
             {
-                return transformer.TransformIter(this);
+                return transformer.TransformIter(this).HasProto(this);
             }
         }
 

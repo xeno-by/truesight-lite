@@ -1,14 +1,20 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Truesight.Decompiler.Domains;
+using Truesight.Decompiler.Hir;
 using Truesight.Decompiler.Hir.Core.Functional;
+using Truesight.Decompiler.Hir.Traversal;
 using Truesight.Decompiler.Pipeline.Attrs;
 using Truesight.Decompiler.Pipeline.Cil;
 using Truesight.Decompiler.Pipeline.Flow;
 using Truesight.Decompiler.Pipeline.Hir;
+using Truesight.Parser.Api.DebugInfo;
 using XenoGears;
 using Truesight.Decompiler.Framework.Annotations;
+using XenoGears.Collections.Dictionaries;
+using XenoGears.Functional;
 using XenoGears.Reflection.Attributes;
 using XenoGears.Traits.Dumpable;
 
@@ -53,6 +59,9 @@ namespace Truesight.Decompiler.Pipeline
         {
             public static Context Process(String nameOfPipeline, Context ctx)
             {
+                Func<ReadOnlyDictionary<Node, ITextRun>> srcs = () => ctx.Cfg.Vertices[2].BalancedCode[0].Family().Where(n => n != null && n.Src != null).ToDictionary(n => n, n => n.Src).ToReadOnly();
+                Func<ReadOnlyDictionary<Node, Node>> protos = () => ctx.Cfg.Vertices[2].BalancedCode[0].Family().Where(n => n != null && n.Proto != null).ToDictionary(n => n, n => n.Proto).ToReadOnly();
+
                 ctx.Cil = DecodeAndLoadCIL.DoLoadCIL(ctx);
                 ctx.Sig = DecodeAndLoadCIL.DoLoadSignature(ctx);
                 ctx.Symbols = DecodeAndLoadCIL.DoLoadSymbols(ctx);

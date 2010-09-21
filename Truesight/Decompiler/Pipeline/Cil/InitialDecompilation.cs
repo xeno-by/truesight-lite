@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.SymbolStore;
 using System.Reflection;
 using Truesight.Decompiler.Hir;
 using Truesight.Decompiler.Hir.Core.Expressions;
@@ -30,6 +31,7 @@ using HirOperatorType = Truesight.Decompiler.Hir.Core.Expressions.OperatorType;
 using Convert=Truesight.Decompiler.Hir.Core.Expressions.Convert;
 using Truesight.Decompiler.Hir.Traversal;
 using Truesight.Decompiler.Hir.TypeInference;
+using Truesight.Parser.Impl.PdbReader;
 
 namespace Truesight.Decompiler.Pipeline.Cil
 {
@@ -43,8 +45,13 @@ namespace Truesight.Decompiler.Pipeline.Cil
         private readonly ControlFlowBlock _block;
         private readonly ReadOnlyCollection<IILOp> _cil;
         private readonly Symbols _symbols;
-        private InitialDecompilation(ControlFlowBlock block, ReadOnlyCollection<IILOp> cil, Symbols symbols) { _block = block; _cil = cil; _symbols = symbols; }
         public static void DoPrimaryDecompilation(ControlFlowBlock block, ReadOnlyCollection<IILOp> cil, Symbols symbols) { new InitialDecompilation(block, cil, symbols).DoPrimaryDecompilation(); }
+        private InitialDecompilation(ControlFlowBlock block, ReadOnlyCollection<IILOp> cil, Symbols symbols)
+        {
+            _block = block;
+            _cil = cil;
+            _symbols = symbols;
+        }
 
         private void DoPrimaryDecompilation()
         {
@@ -375,8 +382,22 @@ namespace Truesight.Decompiler.Pipeline.Cil
         // control panel of primary decompilation
         private Stack<Expression> _stack;
         private void Ignore() { /* do nothing */ }
-        private void Push(Expression expr) { var pp_expr = Filter(expr); _map.Add(pp_expr, _currentOp);  _stack.Push(pp_expr); }
-        private void Qualify(Node node) { var pp_node = Filter(node); _map.Add(pp_node, _currentOp); _qualified.Enqueue(pp_node); }
+        private void Push(Expression expr)
+        {
+            var pp_expr = Filter(expr);
+            _map.Add(pp_expr, _currentOp);
+            var dbg = _currentOp.Source.DebugInfo;
+            if (dbg != null) pp_expr.Family().Where(n => n != null).ForEach(n => n.Src = n.Src ?? dbg[_currentOp.Offset]);
+            _stack.Push(pp_expr);
+        }
+        private void Qualify(Node node)
+        {
+            var pp_node = Filter(node);
+            _map.Add(pp_node, _currentOp);
+            var dbg = _currentOp.Source.DebugInfo;
+            if (dbg != null) pp_node.Family().Where(n => n != null).ForEach(n => n.Src = n.Src ?? dbg[_currentOp.Offset]);
+            _qualified.Enqueue(pp_node);
+        }
 
         // node postprocessors
         private Expression Filter(Expression expr) { return Filter((Node)expr).AssertCast<Expression>(); }

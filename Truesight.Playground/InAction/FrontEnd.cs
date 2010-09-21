@@ -61,6 +61,8 @@ namespace Truesight.Playground.InAction
             // todo. if some dimension is equal to 1, then strip off corresponding loop
             var lam = _m_kernel.Decompile();
             _hir = lam.Body;
+            var srcs = _hir.Family().Where(n => n != null && n.Src != null).ToDictionary(n => n, n => n.Src).ToReadOnly();
+            var protos = _hir.Family().Where(n => n != null && n.Proto != null).ToDictionary(n => n, n => n.Proto).ToReadOnly();
             _params = lam.Sig.Syms;
             _locals = lam.Body.LocalsRecursive();
             _xhir = new Block();

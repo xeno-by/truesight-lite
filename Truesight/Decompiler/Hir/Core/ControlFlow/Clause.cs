@@ -38,11 +38,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
         {
             if (forceDefaultImpl)
             {
-                return base.AcceptTransformer(transformer, false);
+                return base.AcceptTransformer(transformer, false).HasProto(this);
             }
             else
             {
-                return transformer.TransformClause(this);
+                return transformer.TransformClause(this).HasProto(this);
             }
         }
 

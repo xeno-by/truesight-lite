@@ -28,11 +28,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
         {
             if (forceDefaultImpl)
             {
-                return new Break();
+                return new Break().HasProto(this);
             }
             else
             {
-                return transformer.TransformBreak(this);
+                return transformer.TransformBreak(this).HasProto(this);
             }
         }
 

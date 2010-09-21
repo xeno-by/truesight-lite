@@ -42,11 +42,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             {
                 var rhs = transformer.Transform(Rhs).AssertCast<Expression>();
                 var lhs = transformer.Transform(Lhs).AssertCast<Expression>();
-                return new Assign(lhs, rhs);
+                return new Assign(lhs, rhs).HasProto(this);
             }
             else
             {
-                return transformer.TransformAssign(this);
+                return transformer.TransformAssign(this).HasProto(this);
             }
         }
 

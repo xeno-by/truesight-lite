@@ -44,11 +44,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var target = transformer.Transform(Target).AssertCast<Expression>();
-                return new Addr(target);
+                return new Addr(target).HasProto(this);
             }
             else
             {
-                return transformer.TransformAddr(this);
+                return transformer.TransformAddr(this).HasProto(this);
             }
         }
 

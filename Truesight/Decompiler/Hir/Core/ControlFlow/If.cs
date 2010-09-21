@@ -52,11 +52,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
                 var test = transformer.Transform(Test).AssertCast<Expression>();
                 var iftrue = transformer.Transform(IfTrue).AssertCast<Block>();
                 var iffalse = transformer.Transform(IfFalse).AssertCast<Block>();
-                return new If(test, iftrue, iffalse);
+                return new If(test, iftrue, iffalse).HasProto(this);
             }
             else
             {
-                return transformer.TransformIf(this);
+                return transformer.TransformIf(this).HasProto(this);
             }
         }
 

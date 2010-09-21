@@ -56,11 +56,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
         {
             if (forceDefaultImpl)
             {
-                return new SizeOf(Type);
+                return new SizeOf(Type).HasProto(this);
             }
             else
             {
-                return transformer.TransformSizeof(this);
+                return transformer.TransformSizeof(this).HasProto(this);
             }
         }
 

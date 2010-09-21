@@ -99,11 +99,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             {
                 var members = Members.ToDictionary(mi => mi, mi => transformer.Transform(MemberInits[mi]).AssertCast<Expression>());
                 var ctor = transformer.Transform(Ctor).AssertCast<Eval>();
-                return new ObjectInit(ctor, members);
+                return new ObjectInit(ctor, members).HasProto(this);
             }
             else
             {
-                return transformer.TransformObjectInit(this);
+                return transformer.TransformObjectInit(this).HasProto(this);
             }
         }
 

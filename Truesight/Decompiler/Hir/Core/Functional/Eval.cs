@@ -47,11 +47,11 @@ namespace Truesight.Decompiler.Hir.Core.Functional
             if (forceDefaultImpl)
             {
                 var callee = transformer.Transform(Callee).AssertCast<Apply>();
-                return new Eval(callee);
+                return new Eval(callee).HasProto(this);
             }
             else
             {
-                return transformer.TransformEval(this);
+                return transformer.TransformEval(this).HasProto(this);
             }
         }
 

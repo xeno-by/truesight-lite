@@ -220,11 +220,11 @@ namespace Truesight.Decompiler.Hir.Core.Functional
                 var visited = Method != null ? new Lambda(Method) : new Lambda(Sig);
                 visited.InvocationStyle = InvocationStyle;
                 visited._body = transformer.Transform(_body).AssertCast<Block>();
-                return visited;
+                return visited.HasProto(this);
             }
             else
             {
-                return transformer.TransformLambda(this);
+                return transformer.TransformLambda(this).HasProto(this);
             }
         }
 

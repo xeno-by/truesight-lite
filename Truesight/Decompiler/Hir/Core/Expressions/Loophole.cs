@@ -59,14 +59,14 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
         {
             if (forceDefaultImpl)
             {
-                var visited = new Loophole();
+                var visited = new Loophole().HasProto(this);
                 visited._id = _id;
                 visited.Tag = Tag;
                 return this;
             }
             else
             {
-                return transformer.TransformLoophole(this);
+                return transformer.TransformLoophole(this).HasProto(this);
             }
         }
 

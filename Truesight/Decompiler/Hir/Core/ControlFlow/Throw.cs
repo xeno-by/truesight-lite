@@ -50,11 +50,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             if (forceDefaultImpl)
             {
                 var exception = transformer.Transform(Exception).AssertCast<Expression>();
-                return new Throw(exception);
+                return new Throw(exception).HasProto(this);
             }
             else
             {
-                return transformer.TransformThrow(this);
+                return transformer.TransformThrow(this).HasProto(this);
             }
         }
 

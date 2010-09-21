@@ -84,11 +84,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
                 var stmts = this.Select(stmt => transformer.Transform(stmt));
                 var visited = new Block(stmts.Where(stmt => stmt != null));
                 visited.Locals.SetElements(Locals.Select(loc => loc.DeepClone()));
-                return visited;
+                return visited.HasProto(this);
             }
             else
             {
-                return transformer.TransformBlock(this);
+                return transformer.TransformBlock(this).HasProto(this);
             }
         }
 

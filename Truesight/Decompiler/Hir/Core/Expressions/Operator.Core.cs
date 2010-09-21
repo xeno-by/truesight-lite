@@ -88,11 +88,13 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var args = Args.Select(arg => transformer.Transform(arg)).AssertCast<Expression>();
-                return Operator.Create(OperatorType, args);
+                var clone = Operator.Create(OperatorType, args);
+                clone.Proto = this;
+                return clone;
             }
             else
             {
-                return transformer.TransformOperator(this);
+                return transformer.TransformOperator(this).HasProto(this);
             }
         }
 

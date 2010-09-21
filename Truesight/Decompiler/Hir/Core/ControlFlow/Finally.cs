@@ -44,16 +44,16 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
                 {
                     var visited = new Finally(clause);
                     visited.Locals.SetElements(Locals.Select(loc => loc.DeepClone()));
-                    return visited;
+                    return visited.HasProto(this);
                 }
                 else
                 {
-                    return clause;
+                    return clause.HasProto(this);
                 }
             }
             else
             {
-                return transformer.TransformFinally(this);
+                return transformer.TransformFinally(this).HasProto(this);
             }
         }
 

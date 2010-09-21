@@ -21,7 +21,9 @@ namespace Truesight.Decompiler.Hir
         public Node DeepClone() { return ((ICloneable2)this).DeepClone<Node>(); }
         T ICloneable2.DeepClone<T>()
         {
-            return this.Transform<Node, Node>(DeepClone_Transform).AssertCast<T>();
+            var clone = (Node)(Object)this.Transform<Node, Node>(DeepClone_Transform).AssertCast<T>();
+            clone.Proto = this;
+            return (T)(Object)clone;
         }
 
         private Node DeepClone_Transform(Node node)

@@ -44,11 +44,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var target = transformer.Transform(Target).AssertCast<Expression>();
-                return new Deref(target);
+                return new Deref(target).HasProto(this);
             }
             else
             {
-                return transformer.TransformDeref(this);
+                return transformer.TransformDeref(this).HasProto(this);
             }
         }
 

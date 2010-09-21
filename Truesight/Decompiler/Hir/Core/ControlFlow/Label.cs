@@ -72,11 +72,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             {
                 var visited = new Label();
                 visited.Id = Id;
-                return visited;
+                return visited.HasProto(this);
             }
             else
             {
-                return transformer.TransformLabel(this);
+                return transformer.TransformLabel(this).HasProto(this);
             }
         }
 

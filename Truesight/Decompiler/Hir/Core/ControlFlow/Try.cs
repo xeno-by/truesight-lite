@@ -68,11 +68,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             {
                 var body = transformer.Transform(Body).AssertCast<Block>();
                 var clauses = Clauses.Select(c => transformer.Transform(c)).AssertCast<Clause>();
-                return new Try(body, clauses);
+                return new Try(body, clauses).HasProto(this);
             }
             else
             {
-                return transformer.TransformTry(this);
+                return transformer.TransformTry(this).HasProto(this);
             }
         }
 

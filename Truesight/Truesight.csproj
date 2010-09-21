@@ -165,6 +165,7 @@
     <Compile Include="Decompiler\Hir\Node.Equivalence.cs" />
     <Compile Include="Decompiler\Hir\Node.Hierarchy.cs" />
     <Compile Include="Decompiler\Hir\Node.InPlace.cs" />
+    <Compile Include="Decompiler\Hir\Node.Src.cs" />
     <Compile Include="Decompiler\Hir\Node.Traversal.cs" />
     <Compile Include="Decompiler\Hir\NodeType.cs" />
     <Compile Include="Decompiler\Hir\Prettyprint\CSharpParenthesesHelper.cs" />

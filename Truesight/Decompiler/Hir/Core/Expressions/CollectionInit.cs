@@ -66,11 +66,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             {
                 var elements = Elements.Select(el => transformer.Transform(el)).AssertCast<Expression>();
                 var ctor = transformer.Transform(Ctor).AssertCast<Eval>();
-                return new CollectionInit(ctor, elements);
+                return new CollectionInit(ctor, elements).HasProto(this);
             }
             else
             {
-                return transformer.TransformCollectionInit(this);
+                return transformer.TransformCollectionInit(this.HasProto(this));
             }
         }
 

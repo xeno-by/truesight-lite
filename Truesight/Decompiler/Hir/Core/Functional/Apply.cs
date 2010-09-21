@@ -68,11 +68,11 @@ namespace Truesight.Decompiler.Hir.Core.Functional
             {
                 var args = Args.Select(arg => transformer.Transform(arg)).AssertCast<Expression>();
                 var callee = transformer.Transform(Callee).AssertCast<Expression>();
-                return new Apply(callee, args);
+                return new Apply(callee, args).HasProto(this);
             }
             else
             {
-                return transformer.TransformApply(this);
+                return transformer.TransformApply(this).HasProto(this);
             }
         }
 

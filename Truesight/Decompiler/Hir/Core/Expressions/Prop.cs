@@ -97,11 +97,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var @this = transformer.Transform(This).AssertCast<Expression>();
-                return new Prop(Property, @this, InvokedAsVirtual);
+                return new Prop(Property, @this, InvokedAsVirtual).HasProto(this);
             }
             else
             {
-                return transformer.TransformProp(this);
+                return transformer.TransformProp(this).HasProto(this);
             }
         }
 

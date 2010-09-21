@@ -60,11 +60,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var source = transformer.Transform(Target).AssertCast<Expression>();
-                return new TypeIs(Type, source);
+                return new TypeIs(Type, source).HasProto(this);
             }
             else
             {
-                return transformer.TransformTypeIs(this);
+                return transformer.TransformTypeIs(this).HasProto(this);
             }
         }
 

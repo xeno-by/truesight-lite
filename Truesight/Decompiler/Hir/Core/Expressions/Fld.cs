@@ -47,11 +47,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
             if (forceDefaultImpl)
             {
                 var @this = transformer.Transform(This).AssertCast<Expression>();
-                return new Fld(Field, @this);
+                return new Fld(Field, @this).HasProto(this);
             }
             else
             {
-                return transformer.TransformFld(this);
+                return transformer.TransformFld(this).HasProto(this);
             }
         }
 

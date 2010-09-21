@@ -42,11 +42,11 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
             if (forceDefaultImpl)
             {
                 var value = transformer.Transform(Value).AssertCast<Expression>();
-                return new Return(value);
+                return new Return(value).HasProto(this);
             }
             else
             {
-                return transformer.TransformReturn(this);
+                return transformer.TransformReturn(this).HasProto(this);
             }
         }
 

@@ -57,7 +57,9 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
         {
             if (forceDefaultImpl)
             {
-                return new Ref(Sym.DeepClone());
+                var clone = new Ref(Sym.DeepClone());
+                clone.Proto = this;
+                return clone;
             }
             else
             {

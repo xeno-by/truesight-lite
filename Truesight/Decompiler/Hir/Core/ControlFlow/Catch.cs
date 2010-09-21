@@ -92,16 +92,16 @@ namespace Truesight.Decompiler.Hir.Core.ControlFlow
                     var filter = transformer.Transform(Filter).AssertCast<Lambda>();
                     var visited = new Catch(ExceptionType, filter, clause);
                     visited.Locals.SetElements(Locals.Select(loc => loc.DeepClone()));
-                    return visited;
+                    return visited.HasProto(this);
                 }
                 else
                 {
-                    return clause;
+                    return clause.HasProto(this);
                 }
             }
             else
             {
-                return transformer.TransformCatch(this);
+                return transformer.TransformCatch(this).HasProto(this);
             }
         }
 

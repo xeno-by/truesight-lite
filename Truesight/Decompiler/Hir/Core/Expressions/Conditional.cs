@@ -49,11 +49,11 @@ namespace Truesight.Decompiler.Hir.Core.Expressions
                 var test = transformer.Transform(Test).AssertCast<Expression>();
                 var iftrue = transformer.Transform(IfTrue).AssertCast<Expression>();
                 var iffalse = transformer.Transform(IfFalse).AssertCast<Expression>();
-                return new Conditional(test, iftrue, iffalse);
+                return new Conditional(test, iftrue, iffalse).HasProto(this);
             }
             else
             {
-                return transformer.TransformConditional(this);
+                return transformer.TransformConditional(this).HasProto(this);
             }
         }
 
